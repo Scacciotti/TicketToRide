@@ -17,15 +17,31 @@ public class TTRState extends GameState {
     public Deck[] destination;
     public Deck[] trainCards;
     public Deck[] faceUpCards;
-    //private human/ai decks
-    //allocates for max number of computer opponents regardless
-    private Deck[] human;
-    private Deck[] computer1;
-    private Deck[] computer2;
-    private Deck[] computer3;
-    private Deck[] computer4;
     //int used to determine which whose turn it is
     private int playerTurn;
+    //private human/ai destination decks
+    //allocates for max number of computer opponents regardless
+    private Deck[] humanDestination;
+    private Deck[] computerDestination1;
+    private Deck[] ComputerDestination2;
+    private Deck[] computerDestination3;
+    private Deck[] computerDestination4;
 
+    //private human/ai train decks
+    //allocates for max number of computer opponents regardless
+    /**
+     * Could this be set up more flexibly as an ARRAYLIST?
+     */
+    private Deck[] humanTrain;
+    private Deck[] computerTrain1;
+    private Deck[] ComputerTrain2;
+    private Deck[] computerTrain3;
+    private Deck[] computerTrain4;
 
-}
+    //number of human/ai train tokens
+    private int humanToken;
+    private int computerToken1;
+    private int ComputerToken2;
+    private int computerToken3;
+    private int computerToken4;
+   }
