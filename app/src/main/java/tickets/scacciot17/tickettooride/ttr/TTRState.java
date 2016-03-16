@@ -10,16 +10,19 @@ public class TTRState extends GameState {
     private FaceDownDeck allDown;
     private FaceUpDeck fiveUp;
     private DestDeck destinations;
+    private Deck discard;
     private int turn;
 
     public TTRState(){
         allDown = new FaceDownDeck();
-        allDown.StartDeck();
+        allDown.startDeck();
         allDown.shuffle();
         fiveUp = new FaceUpDeck();
-        fiveUp.FirstFive(allDown);
+        fiveUp.firstFive(allDown);
         destinations = new DestDeck();
+        destinations.firstDeck();
         destinations.shuffle();
+        discard = new Deck();
 
         turn = 0;
     }
@@ -28,6 +31,12 @@ public class TTRState extends GameState {
         allDown = new FaceDownDeck(original.allDown);
         fiveUp = new FaceUpDeck(original.fiveUp);
         destinations = new DestDeck(original.destinations);
+        if(!original.discard.cards.isEmpty()){
+            discard = new Deck(discard);
+        }
+        else{
+            discard = new Deck();
+        }
         turn = original.getTurn();
     }
 

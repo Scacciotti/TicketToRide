@@ -11,10 +11,12 @@ public class FaceDownDeck extends Deck {
 
     private ArrayList<TrainCards> cards;
 
+    //Upon initial creation of the deck, create an ArrayList of cards
     public FaceDownDeck(){
        super();
     }
 
+    //If a deck has been created, copy it.
     public FaceDownDeck(FaceDownDeck orig){
         // synchronize to ensure that original is not being modified as we
         // iterate over it
@@ -27,7 +29,9 @@ public class FaceDownDeck extends Deck {
         }
     }
 
-    public void StartDeck(){
+    //Called when creating the deck for the first time. Initializes all of the
+    //train cards with their respective colors
+    public void startDeck(){
         for (int i = 0; i < 9; i++){
             if(i == 8){
                 for(int j = 0; j < 14; j++){

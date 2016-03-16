@@ -10,10 +10,13 @@ import tickets.scacciot17.tickettooride.Game.card.TrainCards;
 public class FaceUpDeck extends Deck {
 
     private ArrayList<TrainCards> cards;
+
+    //Upon initial creation of the deck, create an ArrayList of cards
     public FaceUpDeck(){
         super();
     }
 
+    //If a deck has been created, copy it.
     public FaceUpDeck(FaceUpDeck orig){
         // synchronize to ensure that original is not being modified as we
         // iterate over it
@@ -26,7 +29,9 @@ public class FaceUpDeck extends Deck {
         }
     }
 
-    public void FirstFive(FaceDownDeck source){
+    //After a deck has been created as well as a FaceDownDeck, take the first
+    //five cards from the FaceDownDeck and put them in the FaceUpDeck.
+    public void firstFive(FaceDownDeck source){
         for(int i = 0; i < 5; i++){
             moveTopCardTo(this,source);
         }

@@ -19,7 +19,7 @@ public class Deck implements Serializable {
 	
 	// the cards in our deck; the last card in the ArrayList is the top card
 	// in the deck
-	private final ArrayList<Cards> cards;
+	protected final ArrayList<Cards> cards;
 	
 	/**
 	 * constructor, creating an empty deck
@@ -127,6 +127,7 @@ public class Deck implements Serializable {
 			cards.add(c);
 		}
 	}
+
 	
 	/**
 	 * @return

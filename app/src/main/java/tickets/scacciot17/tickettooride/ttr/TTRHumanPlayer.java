@@ -70,7 +70,7 @@ public class TTRHumanPlayer extends GameHumanPlayer {
     }
 
     public View getTopView() {
-        return myActivity.findViewById(R.id.activity_main);
+        return null;// myActivity.findViewById(R.id.localGameTab);
     }
 
     public void setAsGui(GameMainActivity activity) {
