@@ -14,7 +14,7 @@ public class FaceUpDeck extends Deck {
 
     //Upon initial creation of the deck, create an ArrayList of cards
     public FaceUpDeck(){
-        super();
+        cards = new ArrayList<TrainCards>();
     }
 
     //If a deck has been created, copy it.

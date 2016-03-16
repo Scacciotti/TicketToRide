@@ -27,7 +27,7 @@ public class DestDeck extends Deck {
 
     //Upon initial creation of the deck, create an ArrayList of cards
     public DestDeck(){
-        super();
+        cards = new ArrayList<DestCards>();
     }
 
     /**
