@@ -48,4 +48,8 @@ public class FaceDownDeck extends Deck {
             }
         }
     }
+
+    public ArrayList<TrainCards> getCards(){
+        return cards;
+    }
 }

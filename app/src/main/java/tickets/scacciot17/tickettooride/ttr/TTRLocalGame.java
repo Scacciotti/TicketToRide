@@ -1,10 +1,9 @@
 package tickets.scacciot17.tickettooride.ttr;
 
-import android.hardware.camera2.params.Face;
-
 import tickets.scacciot17.tickettooride.Game.GamePlayer;
 import tickets.scacciot17.tickettooride.Game.LocalGame;
 import tickets.scacciot17.tickettooride.Game.actionMsg.GameAction;
+import tickets.scacciot17.tickettooride.Game.card.TrainCards;
 
 /**
  * Controls the game, allowing actions to be performed by
@@ -62,9 +61,20 @@ public class TTRLocalGame extends LocalGame {
             mainState.setTrackSelect(!mainState.getTrackSelect());
         }
         else if(action instanceof DrawDownCardAction && mainState.getCardSelect()){
-
+            int size = mainState.getAllDown().size();
+            TrainCards c = mainState.getAllDown().getCards().get(size - 1);
+            TrainCards c2 = mainState.getAllDown().getCards().get(size-2);
+            if(c.getHighlight() && c2.getHighlight()){
+                return true;
+            }
+            else if(c.getHighlight()){
+                c2.setHighlight(true);
+            }
+            else{
+                c.setHighlight(true);
+            }
         }
-        else if(action instanceof DrawUpCardAction && mainState.getCardSelect()){
+        else if(action instanceof DrawUpCard1Action && mainState.getCardSelect()){
 
         }
         else if (action instanceof DrawDestCardAction && mainState.getCardSelect()){
