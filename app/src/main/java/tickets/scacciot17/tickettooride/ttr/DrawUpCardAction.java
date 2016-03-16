@@ -4,6 +4,7 @@ import tickets.scacciot17.tickettooride.Game.GamePlayer;
 import tickets.scacciot17.tickettooride.Game.actionMsg.GameAction;
 
 /**
+ * action to draw face up cards
  * Created by Parker on 3/15/2016.
  */
 public class DrawUpCardAction extends GameAction {

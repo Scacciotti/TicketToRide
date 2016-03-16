@@ -35,12 +35,11 @@ public class TTRState extends GameState {
         //tracks = new Tracks();
         trainTokens = new int[4];
         for(int i =0; i < trainTokens.length; i++){
-            trainTokens[i] = 45
+            trainTokens[i] = 45;
         }
     }
-    
       //TODO
-      /**
+    /**
      * Copy constructor to create an identical version of the given game state
      * @param copyState gamestate to copy
      */

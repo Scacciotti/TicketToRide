@@ -19,9 +19,16 @@ public class Track {
     private String startCity;
     private String endCity;
 
-    public Track(int trainTrackNum, int trainColor, Path path, Rect rect){
+    /**
+     * Constructor for track object
+     * @param trainTrackNum the length/number of train cars needed to claim route
+     * @param trackColor  color assigned to track route
+     * @param path collection of paths representing the locations for placed train tokens
+     * @param rect area around path that is selectable by user
+     */
+    public Track(int trainTrackNum, String trackColor, Path path, Rect rect){
         this.trainTrackNum = trainTrackNum;
-        this.trainColor = trainColor;
+        trackColor = null;
         track = path;
         touchArea = rect;
     }
@@ -34,6 +41,12 @@ public class Track {
         return highlight;
     }
 
+    /**
+     * Returns the raw x and y values from user touches on screen
+     * @param x raw x value
+     * @param y raw y value
+     * @return
+     */
     public Boolean isTouched(int x, int y){
         return (touchArea.contains(x,y));
     }
