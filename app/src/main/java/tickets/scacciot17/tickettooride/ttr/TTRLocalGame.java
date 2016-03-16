@@ -59,6 +59,18 @@ public class TTRLocalGame extends LocalGame {
             mainState.setCardSelect(!mainState.getCardSelect());
             mainState.setTrackSelect(!mainState.getTrackSelect());
         }
+        else if(action instanceof DrawDownCardAction && mainState.getCardSelect()){
+
+        }
+        else if(action instanceof DrawUpCardAction && mainState.getCardSelect()){
+
+        }
+        else if (action instanceof DrawDestCardAction && mainState.getCardSelect()){
+
+        }
+        else if (action instanceof TrackPlaceAction && mainState.getTrackSelect()){
+
+        }
         return true;
     }
 }
