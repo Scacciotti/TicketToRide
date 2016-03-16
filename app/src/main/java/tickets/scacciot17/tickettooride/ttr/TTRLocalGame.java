@@ -1,5 +1,7 @@
 package tickets.scacciot17.tickettooride.ttr;
 
+import android.hardware.camera2.params.Face;
+
 import tickets.scacciot17.tickettooride.Game.GamePlayer;
 import tickets.scacciot17.tickettooride.Game.LocalGame;
 import tickets.scacciot17.tickettooride.Game.actionMsg.GameAction;
@@ -30,6 +32,23 @@ public class TTRLocalGame extends LocalGame {
 
     @Override
     protected boolean makeMove(GameAction action) {
+
+        if(action instanceof DrawDestCardAction)
+        {
+
+        }
+        if(action instanceof DrawDownCardAction)
+        {
+
+        }
+        if(action instanceof DrawUpCardAction)
+        {
+
+        }
+        if(action instanceof TrackPlaceAction)
+        {
+
+        }
         return false;
     }
 }
