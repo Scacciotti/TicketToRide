@@ -7,6 +7,32 @@ import tickets.scacciot17.tickettooride.Game.infoMsg.GameState;
  */
 public class TTRState extends GameState {
 
+    private FaceDownDeck allDown;
+    private FaceUpDeck fiveUp;
+    private DestDeck destinations;
+    private int turn;
+
+    public TTRState(){
+        allDown = new FaceDownDeck();
+        allDown.StartDeck();
+        allDown.shuffle();
+        fiveUp = new FaceUpDeck();
+        fiveUp.FirstFive(allDown);
+        destinations = new DestDeck();
+        destinations.shuffle();
+
+        turn = 0;
+    }
+
+    public TTRState(TTRState original){
+        allDown = new FaceDownDeck(original.allDown);
+        fiveUp = new FaceUpDeck(original.fiveUp);
+        destinations = new DestDeck(original.destinations);
+        turn = original.getTurn();
+    }
 
 
+    public int getTurn() {
+        return turn;
+    }
 }
