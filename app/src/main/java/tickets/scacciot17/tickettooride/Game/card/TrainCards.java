@@ -9,8 +9,8 @@ public class TrainCards extends Cards {
                                             "Pink", "Black", "Red", "Green",
                                             "Rainbow"};
 
-
     private String type;
+    private boolean highlight;
 
     public TrainCards(int typeNum){
         type = trainCarNames[typeNum];
@@ -18,5 +18,13 @@ public class TrainCards extends Cards {
 
     public String toString(TrainCards c){
         return this.type;
+    }
+
+    public void setHighlight(boolean highlighted){
+        this.highlight = highlighted;
+    }
+
+    public boolean getHighlight(){
+        return highlight;
     }
 }

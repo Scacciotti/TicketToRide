@@ -15,10 +15,28 @@ public class DestCards extends Cards {
     private String city1;
     private String city2;
     private int score;
+    private boolean highlight;
 
     public DestCards(int dest1, int dest2, int point){
         city1 = destNames[dest1];
         city2 = destNames[dest2];
         score = point;
+        highlight = false;
+    }
+
+    public void setScore(int newScore){
+        this.score = newScore;
+    }
+
+    public void setHighlight(boolean highlighted){
+        this.highlight = highlighted;
+    }
+
+    public int getScore(){
+        return score;
+    }
+
+    public boolean getHighlight(){
+        return highlight;
     }
 }

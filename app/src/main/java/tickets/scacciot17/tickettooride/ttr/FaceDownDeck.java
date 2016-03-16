@@ -11,10 +11,12 @@ import tickets.scacciot17.tickettooride.Game.card.TrainCards;
 public class FaceDownDeck extends Deck {
 
     private ArrayList<TrainCards> cards;
+    private boolean highlight;
 
     //Upon initial creation of the deck, create an ArrayList of cards
     public FaceDownDeck(){
         cards = new ArrayList<TrainCards>();
+        highlight = false;
     }
 
     //If a deck has been created, copy it.
@@ -46,5 +48,4 @@ public class FaceDownDeck extends Deck {
             }
         }
     }
-
 }
