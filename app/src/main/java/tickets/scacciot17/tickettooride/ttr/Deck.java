@@ -52,9 +52,6 @@ public class Deck implements Serializable {
 	 * @return
 	 * 		the deck
 	 */
-	/**
-	 * 
-	 */
 	public void shuffle() {
 		// synchronize so that we don't have someone trying to modify the
 		// deck as we're modifying it

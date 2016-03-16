@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import tickets.scacciot17.tickettooride.Game.card.TrainCards;
 
 /**
+ * represents the collection of face up train cards
  * Created by Parker on 3/15/2016.
  */
 public class FaceUpDeck extends Deck {
@@ -28,7 +29,6 @@ public class FaceUpDeck extends Deck {
             }
         }
     }
-
     //After a deck has been created as well as a FaceDownDeck, take the first
     //five cards from the FaceDownDeck and put them in the FaceUpDeck.
     public void firstFive(FaceDownDeck source){

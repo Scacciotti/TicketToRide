@@ -6,9 +6,9 @@ import android.view.View;
 import tickets.scacciot17.tickettooride.Game.GameHumanPlayer;
 import tickets.scacciot17.tickettooride.Game.GameMainActivity;
 import tickets.scacciot17.tickettooride.Game.infoMsg.GameInfo;
-import tickets.scacciot17.tickettooride.R;
 
 /**
+ * class for human player
  * @author Nicholas
  * @version 3/15/2016
  */

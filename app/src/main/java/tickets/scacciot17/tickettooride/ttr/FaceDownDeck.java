@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import tickets.scacciot17.tickettooride.Game.card.TrainCards;
 
 /**
+ * Creates the pile of face down train cards
  * Created by Parker on 3/15/2016.
  */
 public class FaceDownDeck extends Deck {

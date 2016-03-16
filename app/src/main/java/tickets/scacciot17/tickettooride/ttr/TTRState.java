@@ -49,9 +49,8 @@ public class TTRState extends GameState {
         trackSelect = false;
         cardSelect = true;
     }
-    
       //TODO
-      /**
+    /**
      * Copy constructor to create an identical version of the given game state
      * @param copyState gamestate to copy
      */

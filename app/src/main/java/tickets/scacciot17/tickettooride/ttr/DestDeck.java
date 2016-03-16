@@ -5,7 +5,9 @@ import java.util.ArrayList;
 import tickets.scacciot17.tickettooride.Game.card.DestCards;
 
 /**
- * Created by Parker on 3/15/2016.
+ * Creates the destination deck
+ * @author Parker
+ * @version 3/15/2016.
  */
 public class DestDeck extends Deck {
 
@@ -28,7 +30,9 @@ public class DestDeck extends Deck {
         cards = new ArrayList<DestCards>();
     }
 
-    //If a deck has been created, copy it.
+    /**
+     *     If a deck has been created, copy it.
+     */
     public DestDeck(DestDeck orig){
         // synchronize to ensure that original is not being modified as we
         // iterate over it
@@ -41,8 +45,10 @@ public class DestDeck extends Deck {
         }
     }
 
-    //Called when creating the deck for the first time. Initializes all of the
-    //destination cards
+    /**
+     * Called when creating the deck for the first time. Initializes all of the
+     * destination cards
+     */
     public void firstDeck(){
         for(int i = 0; i < 30; i++){
             cards.add(new DestCards(cities1[i], cities2[i], scores[i]));

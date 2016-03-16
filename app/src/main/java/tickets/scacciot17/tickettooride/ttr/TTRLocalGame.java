@@ -5,9 +5,12 @@ import tickets.scacciot17.tickettooride.Game.LocalGame;
 import tickets.scacciot17.tickettooride.Game.actionMsg.GameAction;
 
 /**
+ * Controls the game, allowing actions to be performed by
+ * the player with the matching ID
  * Created by Parker on 3/15/2016.
  */
 public class TTRLocalGame extends LocalGame {
+
     private TTRState mainState;
     private boolean noMoreTrains;
     private int turnsLeft;
@@ -17,6 +20,9 @@ public class TTRLocalGame extends LocalGame {
         mainState = new TTRState();
         turnsLeft = mainState.getNumPlayers();
     }
+
+    public TTRLocalGame(){mainState = new TTRState();}
+
     @Override
     protected void sendUpdatedStateTo(GamePlayer p) {
         TTRState copy = new TTRState(mainState);
