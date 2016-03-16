@@ -43,7 +43,7 @@ public class TTRState extends GameState {
         allDown = new FaceDownDeck(copyState.allDown);
         fiveUp = new FaceUpDeck(copyState.fiveUp);
         destinations = new DestDeck(copyState.destinations);
-        playerID = copyState.getplayerID();
+        playerID = copyState.getPlayerID();
     }
 
 
