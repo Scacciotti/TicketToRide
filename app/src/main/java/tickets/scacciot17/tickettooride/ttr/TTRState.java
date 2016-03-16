@@ -18,6 +18,7 @@ public class TTRState extends GameState {
     private Boolean cardSelect; //if player is drawing cards
     private Boolean destinationSelect; //If players needs to select 1-3 destination cards
     //private Tracks tracks; //all tracks in game
+    private int[] trainTokens; //train tokens availible to player
 
     public TTRState(){
         allDown = new FaceDownDeck();
@@ -32,6 +33,10 @@ public class TTRState extends GameState {
         scores = new int[4];
         playerID = 0;
         //tracks = new Tracks();
+        trainTokens = new int[4];
+        for(int i =0; i < trainTokens.length; i++){
+            trainTokens[i] = 45
+        }
     }
     
       //TODO
