@@ -36,4 +36,8 @@ public class FaceUpDeck extends Deck {
             moveTopCardTo(this,source);
         }
     }
+
+    public ArrayList<TrainCards> getCards(){
+        return cards;
+    }
 }

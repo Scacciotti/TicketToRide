@@ -54,4 +54,8 @@ public class DestDeck extends Deck {
             cards.add(new DestCards(cities1[i], cities2[i], scores[i]));
         }
     }
+
+    public ArrayList<DestCards> getCards(){
+        return cards;
+    }
 }

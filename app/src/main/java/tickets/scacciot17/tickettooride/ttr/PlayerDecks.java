@@ -46,4 +46,12 @@ public class PlayerDecks extends Deck {
             moveTopCardTo(this,source);
         }
     }
+
+    public ArrayList<TrainCards> getPlayerTrains(){
+        return playerTrains;
+    }
+
+    public ArrayList<DestCards> getPlayerDests(){
+        return playerDests;
+    }
 }

@@ -52,4 +52,8 @@ public class FaceDownDeck extends Deck {
     public ArrayList<TrainCards> getCards(){
         return cards;
     }
+
+    public void setHighlight(boolean value){
+        highlight = value;
+    }
 }

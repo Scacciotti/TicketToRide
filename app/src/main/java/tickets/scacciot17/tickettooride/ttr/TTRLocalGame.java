@@ -1,5 +1,8 @@
 package tickets.scacciot17.tickettooride.ttr;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import tickets.scacciot17.tickettooride.Game.GamePlayer;
 import tickets.scacciot17.tickettooride.Game.LocalGame;
 import tickets.scacciot17.tickettooride.Game.actionMsg.GameAction;
@@ -65,17 +68,121 @@ public class TTRLocalGame extends LocalGame {
             TrainCards c = mainState.getAllDown().getCards().get(size - 1);
             TrainCards c2 = mainState.getAllDown().getCards().get(size-2);
             if(c.getHighlight() && c2.getHighlight()){
-                return true;
+                return false;
             }
             else if(c.getHighlight()){
                 c2.setHighlight(true);
+                return true;
             }
             else{
                 c.setHighlight(true);
+                return true;
             }
         }
         else if(action instanceof DrawUpCard1Action && mainState.getCardSelect()){
-
+            int highlightCount = 0;
+            FaceUpDeck tempDeck = mainState.getFiveUp();
+            ArrayList<TrainCards> tempCards = tempDeck.getCards();
+            for (int i = 0; i < tempDeck.size(); i++){
+                if(tempCards.get(i).getHighlight()){
+                    highlightCount++;
+                }
+            }
+            if(tempCards.get(0).getHighlight()){
+                tempCards.get(0).setHighlight(false);
+                return true;
+            }
+            else if(highlightCount >= 2){
+                return false;
+            }
+            else{
+                tempCards.get(0).setHighlight(true);
+                return true;
+            }
+        }
+        else if(action instanceof DrawUpCard2Action && mainState.getCardSelect()){
+            int highlightCount = 0;
+            FaceUpDeck tempDeck = mainState.getFiveUp();
+            ArrayList<TrainCards> tempCards = tempDeck.getCards();
+            for (int i = 0; i < tempDeck.size(); i++){
+                if(tempCards.get(i).getHighlight()){
+                    highlightCount++;
+                }
+            }
+            if(tempCards.get(1).getHighlight()){
+                tempCards.get(1).setHighlight(false);
+                return true;
+            }
+            else if(highlightCount >= 2){
+                return false;
+            }
+            else{
+                tempCards.get(1).setHighlight(true);
+                return true;
+            }
+        }
+        else if(action instanceof DrawUpCard3Action && mainState.getCardSelect()){
+            int highlightCount = 0;
+            FaceUpDeck tempDeck = mainState.getFiveUp();
+            ArrayList<TrainCards> tempCards = tempDeck.getCards();
+            for (int i = 0; i < tempDeck.size(); i++){
+                if(tempCards.get(i).getHighlight()){
+                    highlightCount++;
+                }
+            }
+            if(tempCards.get(2).getHighlight()){
+                tempCards.get(2).setHighlight(false);
+                return true;
+            }
+            else if(highlightCount >= 2){
+                return false;
+            }
+            else{
+                tempCards.get(2).setHighlight(true);
+                return true;
+            }
+        }
+        else if(action instanceof DrawUpCard4Action && mainState.getCardSelect()){
+            int highlightCount = 0;
+            FaceUpDeck tempDeck = mainState.getFiveUp();
+            ArrayList<TrainCards> tempCards = tempDeck.getCards();
+            for (int i = 0; i < tempDeck.size(); i++){
+                if(tempCards.get(i).getHighlight()){
+                    highlightCount++;
+                }
+            }
+            if(tempCards.get(3).getHighlight()){
+                tempCards.get(3).setHighlight(false);
+                return true;
+            }
+            else if(highlightCount >= 2){
+                return false;
+            }
+            else{
+                tempCards.get(3).setHighlight(true);
+                return true;
+            }
+        }
+        else if(action instanceof DrawUpCard5Action && mainState.getCardSelect()){
+            int highlightCount = 0;
+            FaceUpDeck tempDeck = mainState.getFiveUp();
+            ArrayList<TrainCards> tempCards = tempDeck.getCards();
+            for (int i = 0; i < tempDeck.size(); i++){
+                if(tempCards.get(i).getHighlight()){
+                    highlightCount++;
+                }
+            }
+            if(tempCards.get(4).getHighlight()){
+                tempCards.get(4).setHighlight(false);
+                return true;
+            }
+            else if(highlightCount >= 2){
+                return false;
+            }
+            else{
+                tempCards.get(4).setHighlight(true);
+                return true;
+            }
         }
         else if (action instanceof DrawDestCardAction && mainState.getCardSelect()){
 
@@ -83,6 +190,9 @@ public class TTRLocalGame extends LocalGame {
         else if (action instanceof TrackPlaceAction && mainState.getTrackSelect()){
 
         }
-        return true;
+        else if(action instanceof ConfirmSelectionAction){
+
+        }
+        return false;
     }
 }
