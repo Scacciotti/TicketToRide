@@ -43,6 +43,12 @@ public class TTRState extends GameState {
         allDown = new FaceDownDeck(copyState.allDown);
         fiveUp = new FaceUpDeck(copyState.fiveUp);
         destinations = new DestDeck(copyState.destinations);
+        if(!copyState.discard.cards.isEmpty()){
+            discard = new Deck(copyState.discard);
+        }
+        else{
+            discard = new Deck(copyState.discard);
+        }
         playerID = copyState.getPlayerID();
     }
 
