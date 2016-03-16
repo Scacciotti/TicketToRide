@@ -32,38 +32,6 @@ public class TTRHumanPlayer extends GameHumanPlayer {
         }
         return updateTokens;
     }
-
-    /**
-     * removes cards, called whenever player can legally take a track
-     * @param length references the number of tracks and thus cards, to be consumed
-     */
-    public void removeCards(int length) {
-        //removes cards
-    }
-
-    /**
-     * Used to determine what happens when a card is drawn
-     * @param reference a value set by the type of action
-     */
-    public void drawCards(int reference) {
-        if (reference == 0) {
-            //draw cards from face down train cards
-        } else if (reference == 1) {
-            //draw cards from face up train cards
-        } else if (reference == 2) {
-            //draw cards from destination
-        } else {
-            //you did something really wrong
-        }
-    }
-
-    /**
-     * called when trains can legally be placed onto the "game board"
-     */
-    public void placeTrains() {
-
-    }
-
     //required as extension of GAMEHUMANPLAYER
     public TTRHumanPlayer(String name) {
         super(name);
