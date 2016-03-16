@@ -21,8 +21,6 @@ public class TTRLocalGame extends LocalGame {
         turnsLeft = mainState.getNumPlayers();
     }
 
-    public TTRLocalGame(){mainState = new TTRState();}
-
     @Override
     protected void sendUpdatedStateTo(GamePlayer p) {
         TTRState copy = new TTRState(mainState);
