@@ -9,20 +9,43 @@ import tickets.scacciot17.tickettooride.Game.actionMsg.GameAction;
  */
 public class TTRLocalGame extends LocalGame {
     private TTRState mainState;
-
-    public TTRLocalGame(){mainState = new TTRState();}
+    private boolean noMoreTrains;
+    private int turnsLeft;
+    private int topScorePlayer = 0;
+    public TTRLocalGame(){
+        noMoreTrains = false;
+        mainState = new TTRState();
+        turnsLeft = mainState.getNumPlayers();
+    }
     @Override
     protected void sendUpdatedStateTo(GamePlayer p) {
-
+        TTRState copy = new TTRState(mainState);
+        p.sendInfo(copy);
     }
 
     @Override
     protected boolean canMove(int playerIdx) {
-        return playerIdx == mainState.getTurn();
+        return playerIdx == mainState.getPlayerID();
     }
 
     @Override
     protected String checkIfGameOver() {
+        for(int i = 0; i < mainState.trainTokens.length; i++){
+            if(mainState.trainTokens[i] <=2){
+                noMoreTrains = true;
+            }
+        }
+        if(noMoreTrains){
+            turnsLeft--;
+        }
+        if(turnsLeft == 0){
+            for(int j = 0; j < mainState.getScores().length; j++){
+                if(mainState.getScores()[j] > mainState.getScores()[topScorePlayer]){
+                    topScorePlayer = j;
+                }
+            }
+            return ("Player Wins");
+        }
         return null;
     }
 

@@ -1,5 +1,7 @@
 package tickets.scacciot17.tickettooride.ttr;
 
+import java.util.ArrayList;
+
 import tickets.scacciot17.tickettooride.Game.infoMsg.GameState;
 
 /**
@@ -11,6 +13,7 @@ public class TTRState extends GameState {
     private FaceUpDeck fiveUp;
     private DestDeck destinations;
     private Deck discard;
+    private PlayerDecks[] playerDecks;
     private int playerID; //ID of the player whose turn it is
     private int numPlayers; //number of players for this game
     private int[] scores; //scores of all players
@@ -18,9 +21,10 @@ public class TTRState extends GameState {
     private Boolean cardSelect; //if player is drawing cards
     private Boolean destinationSelect; //If players needs to select 1-3 destination cards
     //private Tracks tracks; //all tracks in game
-    private int[] trainTokens; //train tokens availible to player
+    protected int[] trainTokens; //train tokens availible to player
 
     public TTRState(){
+        numPlayers = 2;
         allDown = new FaceDownDeck();
         allDown.startDeck();
         allDown.shuffle();
@@ -30,13 +34,20 @@ public class TTRState extends GameState {
         destinations.firstDeck();
         destinations.shuffle();
         discard = new Deck();
-        scores = new int[4];
+        scores = new int[numPlayers];
         playerID = 0;
         //tracks = new Tracks();
-        trainTokens = new int[4];
+        trainTokens = new int[numPlayers];
+        playerDecks = new PlayerDecks[numPlayers];
         for(int i =0; i < trainTokens.length; i++){
-            trainTokens[i] = 45
+            trainTokens[i] = 45;
+            scores[i] = 0;
         }
+        for(int i = 0; i < playerDecks.length; i++){
+            playerDecks[i].firstHand(allDown);
+        }
+        trackSelect = false;
+        cardSelect = true;
     }
     
       //TODO

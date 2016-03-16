@@ -10,7 +10,7 @@ import android.util.Log;
  */
 public class Track {
     private int trainTrackNum = 0;
-    private int trainColor = 0; //hex
+    private String trackColor = null;
     private Boolean selected = false;
     private Boolean highlight = false;
     private Boolean covered = false;
@@ -19,9 +19,9 @@ public class Track {
     private String startCity;
     private String endCity;
 
-    public Track(int trainTrackNum, int trainColor, Path path, Rect rect){
+    public Track(int trainTrackNum, String trainColor, Path path, Rect rect){
         this.trainTrackNum = trainTrackNum;
-        this.trainColor = trainColor;
+        this.trackColor = trainColor;
         track = path;
         touchArea = rect;
     }
