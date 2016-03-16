@@ -55,6 +55,10 @@ public class TTRLocalGame extends LocalGame {
 
     @Override
     protected boolean makeMove(GameAction action) {
-        return false;
+        if (action instanceof ChangeModeAction){
+            mainState.setCardSelect(!mainState.getCardSelect());
+            mainState.setTrackSelect(!mainState.getTrackSelect());
+        }
+        return true;
     }
 }
