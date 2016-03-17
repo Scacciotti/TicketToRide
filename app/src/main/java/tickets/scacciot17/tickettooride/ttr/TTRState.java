@@ -51,6 +51,9 @@ public class TTRState extends GameState {
         }
         trackSelect = false;
         cardSelect = true;
+        destinationClick = false;
+        trainCardClick = false;
+        trainPlaceClick = false;
     }
       //TODO
     /**
@@ -78,6 +81,9 @@ public class TTRState extends GameState {
         if(this.getCardSelect()) {
             this.setCardSelect(!this.getCardSelect());
             this.setTrackSelect(!this.getTrackSelect());
+        } else if(this.getTrackSelect()){
+            this.setCardSelect(!this.getCardSelect());
+            this.setTrackSelect(!this.getTrackSelect());
         }
     }
 
@@ -86,14 +92,13 @@ public class TTRState extends GameState {
      * @param action is user event
      */
     public void highlightDownCard(DrawDownCardAction action) {
-        if (this.getCardSelect() && this.getDestinationClick()) {
+        if (this.getCardSelect() && !this.getDestinationClick()) {
             int size = this.getAllDown().size();
             TrainCards c = this.getAllDown().getCards().get(size - 1);
             TrainCards c2 = this.getAllDown().getCards().get(size - 2);
             if (c.getHighlight() && c2.getHighlight()) {
                 return;
-            }
-            else if (c.getHighlight()) {
+            } else if (c.getHighlight()) {
                 c2.setHighlight(true);
             } else {
                 c.setHighlight(true);
@@ -108,7 +113,7 @@ public class TTRState extends GameState {
      * @param spot location of click/ item selection
      */
     public void highlightUpCard(DrawUpCard1Action action, int spot){
-        if(this.getCardSelect() && this.getDestinationClick()) {
+        if(this.getCardSelect() && !this.getDestinationClick()) {
             int highlightCount = 0;
             FaceUpDeck tempDeck = this.getFiveUp();
             ArrayList<TrainCards> tempCards = tempDeck.getCards();
@@ -139,8 +144,16 @@ public class TTRState extends GameState {
         }
     }
     public void highlightDestCard( DrawDestCardAction action){
-
-
+        if(this.getCardSelect() && !this.getTrainCardClick()){
+            if(this.destinations.getHighlight()){
+                this.destinations.setHighlight(false);
+                this.setDestinationClick(false);
+            }
+            else if(!this.destinations.getHighlight()){
+                this.destinations.setHighlight(true);
+                this.setDestinationClick(true);
+            }
+        }
     }
     public void placeTrack( TrackPlaceAction action){
 
@@ -245,4 +258,11 @@ public class TTRState extends GameState {
         this.trainPlaceClick = destinationClick;
     }
 
+    public int[] getTrainTokens() {
+        return trainTokens;
+    }
+
+    public void setTrainTokens(int[] trainTokens) {
+        this.trainTokens = trainTokens;
+    }
 }

@@ -18,8 +18,15 @@ public class DestCards extends Cards {
     private boolean highlight;
 
     public DestCards(int dest1, int dest2, int point){
-        city1 = destNames[dest1];
-        city2 = destNames[dest2];
+        if(dest1 > destNames.length-1){
+            city1 = "";
+        }
+        else if (dest2 > destNames.length-1){
+            city2 = "";
+        } else {
+            city1 = destNames[dest1];
+            city2 = destNames[dest2];
+        }
         score = point;
         highlight = false;
     }
