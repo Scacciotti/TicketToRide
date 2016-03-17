@@ -18,26 +18,24 @@ public class Track {
     private Rect touchArea;
     private String startCity;
     private String endCity;
+    private boolean selectHighlight;
 
     /**
      * Constructor for track object
      * @param trainTrackNum the length/number of train cars needed to claim route
      * @param trainColor  color assigned to trains on the track route
-     * @param path collection of paths representing the locations for placed train tokens
-     * @param rect area around path that is selectable by user
+     * @param secondCity collection of paths representing the locations for placed train tokens
+     * @param firstCity area around path that is selectable by user
      */
-    /*
-    public Track(int trainTrackNum, String trainColor, Path path, Rect rect){
+
+    public Track(int trainTrackNum, String trainColor, String firstCity, String secondCity){
         this.trainTrackNum = trainTrackNum;
         this.trainColor = trainColor;
-        trainColor = null;
-    public Track(int trainTrackNumber, String trackColor, Path path, Rect rect){
-        this.trainTrackNum = trainTrackNumber;
-        this.trackColor = trainColor;
-        trackColor = null;
-        track = path;
-        touchArea = rect;
-    }*/
+        startCity = firstCity;
+        endCity = secondCity;
+        highlight = false;
+        selected = false;
+    }
 
     public void setHighlight(Boolean val){
         highlight = val;
@@ -55,6 +53,14 @@ public class Track {
      */
     public Boolean isTouched(int x, int y){
         return (touchArea.contains(x,y));
+    }
+
+    public int getTrainTrackNum(){
+        return trainTrackNum;
+    }
+
+    public String getTrainColor(){
+        return trainColor;
     }
 
     public Path getTrack(){

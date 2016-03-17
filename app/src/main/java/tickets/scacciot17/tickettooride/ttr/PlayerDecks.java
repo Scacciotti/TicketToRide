@@ -38,9 +38,12 @@ public class PlayerDecks extends Deck {
             }
         }
     }
-
-    //After a deck has been created as well as a FaceDownDeck, take the first
-    //four cards from the FaceDownDeck and put them in the FaceUpDeck.
+    /**
+     * After a deck has been created as well as a FaceDownDeck, take the first
+     * four cards from the FaceDownDeck and put them in the FaceUpDeck.
+     * @param source deck "location"
+     * @param destination player "hand location"
+     */
     public void firstHand(FaceDownDeck source, PlayerDecks destination){
         for(int i = 0; i < 4; i++){
             moveTopCardTo(source, destination);

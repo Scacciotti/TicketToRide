@@ -23,9 +23,12 @@ public class TTRState extends GameState {
     private Boolean destinationClick; //If players needs to select 1-3 destination cards
     private Boolean trainCardClick;
     private Boolean trainPlaceClick;
-    //private Tracks tracks; //all tracks in game
+    private Track[] testTracks;
     protected int[] trainTokens; //train tokens availible to player
 
+    /**
+     *
+     */
     public TTRState(){
         numPlayers = 2;
         allDown = new FaceDownDeck();
@@ -57,11 +60,21 @@ public class TTRState extends GameState {
         destinationClick = false;
         trainCardClick = false;
         trainPlaceClick = false;
+        testTracks = new Track[8];
+        testTracks[0] = new Track(2, "Blue", "PittsBurgh", "Boston");
+        testTracks[1] = new Track(2, "Yellow", "PittsBurgh", "Boston");
+        testTracks[2] = new Track(2, "Orange", "PittsBurgh", "Boston");
+        testTracks[3] = new Track(2, "Black", "PittsBurgh", "Boston");
+        testTracks[4] = new Track(2, "White", "PittsBurgh", "Boston");
+        testTracks[5] = new Track(2, "Pink", "PittsBurgh", "Boston");
+        testTracks[6] = new Track(2, "Red", "PittsBurgh", "Boston");
+        testTracks[7] = new Track(2, "Green", "PittsBurgh", "Boston");
+
     }
       //TODO
     /**
      * Copy constructor to create an identical version of the given game state
-     * @param copyState gamestate to copy
+     * @param copyState game state to copy
      */
     public TTRState(TTRState copyState){
         allDown = new FaceDownDeck(copyState.allDown);
@@ -77,8 +90,9 @@ public class TTRState extends GameState {
     }
 
     /**
-     * Deselects
-     * @param action
+     * Selects which area the user is attempting to interact with
+     * User cannot interact with track select and card select simultaneously
+     * @param action user event
      */
     public void changeMode(ChangeModeAction action){
         if(this.getCardSelect()) {
@@ -146,6 +160,12 @@ public class TTRState extends GameState {
             }
         }
     }
+
+    /**
+     * Highlights the destination deck if user wants
+     * to select from it
+     * @param action user generated event
+     */
     public void highlightDestCard( DrawDestCardAction action){
         if(this.getCardSelect() && !this.getTrainCardClick()){
             if(this.destinations.getHighlight()){
@@ -158,11 +178,54 @@ public class TTRState extends GameState {
             }
         }
     }
-    public void placeTrack( TrackPlaceAction action){
 
+    public boolean isLegalTrack(Track currTrack, ArrayList<TrainCards> trainAvailable){
+        int colorCount = 0;
+        for (int i = 0; i < trainAvailable.size(); i++) {
+            if (trainAvailable.get(i).getType().equals(currTrack.getTrainColor())) {
+                colorCount++;
+            }
+        }
+        if(colorCount >= currTrack.getTrainTrackNum()){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
-    public void confirmSelection( ConfirmSelectionAction action){
 
+    public void highlightTracks(){
+        if(this.trackSelect)
+        {
+            for(int i = 0; i < testTracks.length; i++) {
+                if (isLegalTrack(testTracks[i], playerDecks[playerID].getPlayerTrains())){
+                    testTracks[i].setHighlight(true);
+                }
+            }
+        }
+    }
+
+    /**
+     * Places a track on game board
+     * @param action user generated event
+     */
+    public void placeTrack(TrackPlaceAction action, int spot){
+        if(!trainCardClick && !destinationClick) {
+            highlightTracks();
+            if (testTracks[spot].getHighlight()) {
+                testTracks[spot].setSelected(true);
+                trainPlaceClick = true;
+            }
+        }
+    }
+
+    /**
+     * If user has highlighted a legal action, confirms their selection
+     * and ends turn when appropriate
+     * @param action
+     */
+    public void confirmSelection( ConfirmSelectionAction action){
+        
     }
 
    public FaceDownDeck getAllDown() {
