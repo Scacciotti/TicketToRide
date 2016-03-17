@@ -12,6 +12,7 @@ import tickets.scacciot17.tickettooride.ttr.card.DestCards;
 public class DestDeck extends Deck {
 
     private ArrayList<DestCards> cards;
+    private boolean highlight;
 
     //The first locations labeled on the destination cards
     private int[] cities1 = {1, 3, 5, 7, 9, 11, 13, 14, 16, 14, 18, 7, 13, 20, 22, 24,
@@ -28,6 +29,7 @@ public class DestDeck extends Deck {
     //Upon initial creation of the deck, create an ArrayList of cards
     public DestDeck(){
         cards = new ArrayList<DestCards>();
+        highlight = false;
     }
 
     /**
@@ -43,6 +45,7 @@ public class DestDeck extends Deck {
                 cards.add(c);
             }
         }
+        highlight = orig.highlight;
     }
 
     /**
@@ -57,5 +60,12 @@ public class DestDeck extends Deck {
 
     public ArrayList<DestCards> getCards(){
         return cards;
+    }
+
+    public void setHighlight(boolean value){
+        this.highlight = value;
+    }
+    public boolean getHighlight(){
+        return highlight;
     }
 }
