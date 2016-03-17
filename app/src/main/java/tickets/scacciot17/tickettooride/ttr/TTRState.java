@@ -63,7 +63,7 @@ public class TTRState extends GameState {
         for(int i = 0; i < playerDecks.length; i++){
             playerDecks[i] = new PlayerDecks();
             playerDecks[i].firstHandTrains(allDown,playerDecks[i]);
-            playerDecks[i].firstHandDests(destinations,playerDecks[i]);
+            playerDecks[i].firstHandDests(destinations, playerDecks[i]);
         }
         trackSelect = false;
         cardSelect = true;
@@ -234,7 +234,7 @@ public class TTRState extends GameState {
      * and ends turn when appropriate
      * @param action
      */
-    public void confirmSelection( ConfirmSelectionAction action){
+    public void confirmSelection(ConfirmSelectionAction action){
         if(trainCardClick){
 
         }
