@@ -26,13 +26,18 @@ public class Track {
      * @param path collection of paths representing the locations for placed train tokens
      * @param rect area around path that is selectable by user
      */
+    /*
     public Track(int trainTrackNum, String trainColor, Path path, Rect rect){
         this.trainTrackNum = trainTrackNum;
         this.trainColor = trainColor;
         trainColor = null;
+    public Track(int trainTrackNumber, String trackColor, Path path, Rect rect){
+        this.trainTrackNum = trainTrackNumber;
+        this.trackColor = trainColor;
+        trackColor = null;
         track = path;
         touchArea = rect;
-    }
+    }*/
 
     public void setHighlight(Boolean val){
         highlight = val;

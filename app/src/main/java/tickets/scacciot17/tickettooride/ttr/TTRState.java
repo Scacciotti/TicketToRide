@@ -113,6 +113,7 @@ public class TTRState extends GameState {
      * @param spot location of click/ item selection
      */
     public void highlightUpCard(DrawUpCard1Action action, int spot){
+    public void highlightUpCard(DrawUpCardAction action, int spot){
         if(this.getCardSelect() && !this.getDestinationClick()) {
             int highlightCount = 0;
             FaceUpDeck tempDeck = this.getFiveUp();
