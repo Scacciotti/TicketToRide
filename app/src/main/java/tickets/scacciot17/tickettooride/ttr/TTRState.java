@@ -26,6 +26,7 @@ public class TTRState extends GameState {
     private Boolean trainPlaceClick;
     private Track[] testTracks;
     protected int[] trainTokens; //train tokens available to player
+    private int trackSpot = -1;
 
     public Track[] getTestTracks() {
         return testTracks;
@@ -208,8 +209,10 @@ public class TTRState extends GameState {
         if(this.trackSelect)
         {
             for(int i = 0; i < testTracks.length; i++) {
-                if (isLegalTrack(testTracks[i], playerDecks[playerID].getPlayerTrains().getCards())){
-                    testTracks[i].setHighlight(true);
+                if(!testTracks[i].getCovered()) {
+                    if (isLegalTrack(testTracks[i], playerDecks[playerID].getPlayerTrains().getCards())) {
+                        testTracks[i].setHighlight(true);
+                    }
                 }
             }
         }
@@ -222,9 +225,14 @@ public class TTRState extends GameState {
     public void placeTrack(TrackPlaceAction action, int spot){
         if(!trainCardClick && !destinationClick) {
             highlightTracks();
-            if (testTracks[spot].getHighlight()) {
+            if (testTracks[spot].getHighlight() && !trainPlaceClick && !testTracks[spot].getSelected()) {
                 testTracks[spot].setSelected(true);
                 trainPlaceClick = true;
+                trackSpot = spot;
+            } else if(testTracks[spot].getSelected() && trainPlaceClick){
+                testTracks[spot].setSelected(false);
+                trainPlaceClick = false;
+                trackSpot = -1;
             }
         }
     }
@@ -235,8 +243,12 @@ public class TTRState extends GameState {
      * @param action
      */
     public void confirmSelection( ConfirmSelectionAction action){
-        if(trainCardClick){
-
+        if(trainPlaceClick){
+            testTracks[trackSpot].setCovered(true);
+            for(int i = 0; i < testTracks.length; i++){
+                testTracks[i].setSelected(false);
+                testTracks[i].setHighlight(false);
+            }
         }
         else if(true){
 
