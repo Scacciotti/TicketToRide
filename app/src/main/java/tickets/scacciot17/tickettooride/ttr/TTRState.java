@@ -70,7 +70,7 @@ public class TTRState extends GameState {
         playerID = copyState.getPlayerID();
     }
 
-    public void changMode (ChangeModeAction action){
+    public void changeMode(ChangeModeAction action){
         if(this.getCardSelect()) {
             this.setCardSelect(!this.getCardSelect());
             this.setTrackSelect(!this.getTrackSelect());
@@ -93,7 +93,7 @@ public class TTRState extends GameState {
         }
     }
 
-    public void highlightUpCard1( DrawUpCard1Action action){
+    public void highlightUpCard(DrawUpCard1Action action, int spot){
         if(this.getCardSelect() && this.getDestinationClick()) {
             int highlightCount = 0;
             FaceUpDeck tempDeck = this.getFiveUp();
@@ -110,8 +110,8 @@ public class TTRState extends GameState {
                     highlightCount++;
                 }
             }
-            if (tempCards.get(0).getHighlight()) {
-                tempCards.get(0).setHighlight(false);
+            if (tempCards.get(spot).getHighlight()) {
+                tempCards.get(spot).setHighlight(false);
                 highlightCount--;
                 if(highlightCount == 0){
                     this.setTrainCardClick(false);
@@ -119,133 +119,7 @@ public class TTRState extends GameState {
             } else if (highlightCount >= 2) {
                 this.setTrainCardClick(true);
             } else {
-                tempCards.get(0).setHighlight(true);
-                this.setTrainCardClick(true);
-            }
-        }
-    }
-
-    public void highlightUpCard2( DrawUpCard2Action action){
-        if(this.getCardSelect() && this.getDestinationClick()) {
-            int highlightCount = 0;
-            FaceUpDeck tempDeck = this.getFiveUp();
-            ArrayList<TrainCards> tempCards = tempDeck.getCards();
-            for (int i = 0; i < tempDeck.size(); i++) {
-                if (tempCards.get(i).getHighlight()) {
-                    highlightCount++;
-                }
-            }
-            FaceDownDeck tempDeck2 = this.getAllDown();
-            ArrayList<TrainCards> tempCards2 = tempDeck2.getCards();
-            for (int i = 0; i < tempDeck2.size(); i++) {
-                if (tempCards2.get(i).getHighlight()) {
-                    highlightCount++;
-                }
-            }
-            if (tempCards.get(1).getHighlight()) {
-                tempCards.get(1).setHighlight(false);
-                highlightCount--;
-                if(highlightCount == 0){
-                    this.setTrainCardClick(false);
-                }
-            } else if (highlightCount >= 2) {
-                this.setTrainCardClick(true);
-            } else {
-                tempCards.get(1).setHighlight(true);
-                this.setTrainCardClick(true);
-            }
-        }
-    }
-    public void highlightUpCard3( DrawUpCard3Action action){
-        if(this.getCardSelect() && this.getDestinationClick()) {
-            int highlightCount = 0;
-            FaceUpDeck tempDeck = this.getFiveUp();
-            ArrayList<TrainCards> tempCards = tempDeck.getCards();
-            for (int i = 0; i < tempDeck.size(); i++) {
-                if (tempCards.get(i).getHighlight()) {
-                    highlightCount++;
-                }
-            }
-            FaceDownDeck tempDeck2 = this.getAllDown();
-            ArrayList<TrainCards> tempCards2 = tempDeck2.getCards();
-            for (int i = 0; i < tempDeck2.size(); i++) {
-                if (tempCards2.get(i).getHighlight()) {
-                    highlightCount++;
-                }
-            }
-            if (tempCards.get(2).getHighlight()) {
-                tempCards.get(2).setHighlight(false);
-                highlightCount--;
-                if(highlightCount == 0){
-                    this.setTrainCardClick(false);
-                }
-            } else if (highlightCount >= 2) {
-                this.setTrainCardClick(true);
-            } else {
-                tempCards.get(2).setHighlight(true);
-                this.setTrainCardClick(true);
-            }
-
-        }
-    }
-    public void highlightUpCard4( DrawUpCard4Action action){
-        if(this.getCardSelect() && this.getDestinationClick()) {
-            int highlightCount = 0;
-            FaceUpDeck tempDeck = this.getFiveUp();
-            ArrayList<TrainCards> tempCards = tempDeck.getCards();
-            for (int i = 0; i < tempDeck.size(); i++) {
-                if (tempCards.get(i).getHighlight()) {
-                    highlightCount++;
-                }
-            }
-            FaceDownDeck tempDeck2 = this.getAllDown();
-            ArrayList<TrainCards> tempCards2 = tempDeck2.getCards();
-            for (int i = 0; i < tempDeck2.size(); i++) {
-                if (tempCards2.get(i).getHighlight()) {
-                    highlightCount++;
-                }
-            }
-            if (tempCards.get(3).getHighlight()) {
-                tempCards.get(3).setHighlight(false);
-                highlightCount--;
-                if(highlightCount == 0){
-                    this.setTrainCardClick(false);
-                }
-            } else if (highlightCount >= 2) {
-                this.setTrainCardClick(true);
-            } else {
-                tempCards.get(3).setHighlight(true);
-                this.setTrainCardClick(true);
-            }
-        }
-    }
-    public void highlightUpCard5( DrawUpCard5Action action){
-        if(this.getCardSelect() && this.getDestinationClick()) {
-            int highlightCount = 0;
-            FaceUpDeck tempDeck = this.getFiveUp();
-            ArrayList<TrainCards> tempCards = tempDeck.getCards();
-            for (int i = 0; i < tempDeck.size(); i++) {
-                if (tempCards.get(i).getHighlight()) {
-                    highlightCount++;
-                }
-            }
-            FaceDownDeck tempDeck2 = this.getAllDown();
-            ArrayList<TrainCards> tempCards2 = tempDeck2.getCards();
-            for (int i = 0; i < tempDeck2.size(); i++) {
-                if (tempCards2.get(i).getHighlight()) {
-                    highlightCount++;
-                }
-            }
-            if (tempCards.get(4).getHighlight()) {
-                tempCards.get(4).setHighlight(false);
-                highlightCount--;
-                if(highlightCount == 0){
-                    this.setTrainCardClick(false);
-                }
-            } else if (highlightCount >= 2) {
-                this.setTrainCardClick(true);
-            } else {
-                tempCards.get(4).setHighlight(true);
+                tempCards.get(spot).setHighlight(true);
                 this.setTrainCardClick(true);
             }
         }
