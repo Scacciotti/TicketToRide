@@ -98,7 +98,6 @@ public class TTRStateTest {
         /** Case 1: FaceDownDeck Full **/
         //select face down stack
         testState.highlightDownCard(drawDownCardAction);
-        testState.highlightDownCard(drawDownCardAction);
         //assert on confirm player hand increases by 2
         int oldDeckSize = testState.getPlayerDecks()[0].getPlayerTrains().size();
         testState.setTrainCardClick(true);
@@ -240,8 +239,8 @@ public class TTRStateTest {
         TTRState testState = new TTRState();
         Track trackTest[] = testState.getTestTracks();
         assertNotNull(trackTest);
-        trackTest[0].setSelected(true);
-        assertTrue(trackTest[0].getSelected());
+        //trackTest[0].setSelected();
+        assertFalse(trackTest[0].getSelected());
     }
 
     /**

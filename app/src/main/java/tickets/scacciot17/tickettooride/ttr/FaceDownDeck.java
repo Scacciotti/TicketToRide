@@ -66,4 +66,7 @@ public class FaceDownDeck extends TrainCarDeck {
         highlight = value;
     }
 
+    public boolean getHighlight(){
+        return highlight;
+    }
 }
