@@ -29,7 +29,6 @@ public class FaceUpDeck extends TrainCarDeck {
             }
         }
     }
-
     public void firstFive(FaceDownDeck source){
         for(int i = 0; i < 5; i++){
             moveTopCardTo(this, source);

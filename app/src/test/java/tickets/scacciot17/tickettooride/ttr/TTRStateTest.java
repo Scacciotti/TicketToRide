@@ -202,6 +202,18 @@ public class TTRStateTest {
         testState.setTrackSelect(true);
         assertTrue(testState.getTrackSelect());
     }
-
+    @Test
+    public void testIsLegalTrack() throws Exception
+    {
+        TTRState testState = new TTRState();
+        Track testTrack = testState.getATestTrack(3);//black track
+        ArrayList<TrainCards> testArray = new ArrayList<>();
+        //add 4 train card objects, 5 is a reference to a black card
+        testArray.add(new TrainCards(5));
+        testArray.add(new TrainCards(5));
+        testArray.add(new TrainCards(5));
+        testArray.add(new TrainCards(5));
+        assertTrue(testArray.size() == 4);
+        assertTrue(testState.isLegalTrack(testTrack,testArray));
+    }
 }
-
