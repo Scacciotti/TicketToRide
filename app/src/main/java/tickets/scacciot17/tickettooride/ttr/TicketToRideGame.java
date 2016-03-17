@@ -3,7 +3,13 @@ package tickets.scacciot17.tickettooride.ttr;
 import tickets.scacciot17.tickettooride.Game.Game;
 
 /**
- * Created by Nicka on 3/14/2016.
+ *  Interface for the game.
+ *
+ * @author Nick Scacciotti
+ * @author Nick Larson
+ * @author Jess Mann
+ * @author Parker Schibel
+ * @version March 2016
  */
 public interface TicketToRideGame extends Game {
 

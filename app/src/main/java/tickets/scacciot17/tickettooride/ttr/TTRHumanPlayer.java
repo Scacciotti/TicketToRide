@@ -9,8 +9,12 @@ import tickets.scacciot17.tickettooride.Game.infoMsg.GameInfo;
 
 /**
  * class for human player
- * @author Nicholas
- * @version 3/15/2016
+ *
+ * @author Nick Scacciotti
+ * @author Nick Larson
+ * @author Jess Mann
+ * @author Parker Schibel
+ * @version March 2016
  */
 public class TTRHumanPlayer extends GameHumanPlayer {
 
@@ -38,7 +42,7 @@ public class TTRHumanPlayer extends GameHumanPlayer {
     }
 
     public View getTopView() {
-        return null;// myActivity.findViewById();
+        return null;
     }
 
     public void setAsGui(GameMainActivity activity) {

@@ -8,7 +8,11 @@ import tickets.scacciot17.tickettooride.ttr.card.TrainCards;
 /**
  * The decks owned by the players
  *
- * Created by Parker on 3/16/2016.
+ * @author Nick Scacciotti
+ * @author Nick Larson
+ * @author Jess Mann
+ * @author Parker Schibel
+ * @version March 2016
  */
 public class PlayerDecks {
     //instance variables for players' TrainCar and Destination decks
@@ -22,6 +26,13 @@ public class PlayerDecks {
     }
 
     //If a deck has been created, copy it.
+    /**
+     * External Citation
+     *  Date: 14 March 2016
+     *  Problem: Need to copy a deck
+     *  Resource: SJProj (SlapJack game supplied by Dr. Nuxoll)
+     *  Solution: We used a modified version of the code to copy a deck
+     */
     public PlayerDecks(PlayerDecks orig){
         // synchronize to ensure that original is not being modified as we
         // iterate over it
@@ -40,6 +51,14 @@ public class PlayerDecks {
      * @param source deck "location"
      * @param destination player "hand location"
      */
+    /**
+     * External Citation
+     *  Date: 14 March 2016
+     *  Problem: Need to move cards between decks
+     *  Resource: SJProj (SlapJack game supplied by Dr. Nuxoll)
+     *  Solution: We used a modified version of the code to move cards from one deck
+     *              to another
+     */
     public void firstHandTrains(TrainCarDeck source, PlayerDecks destination){
         for(int i = 0; i < 4; i++){
             playerTrains.moveTopCardTo(source, destination.playerTrains);
@@ -53,6 +72,14 @@ public class PlayerDecks {
      *
      * @param source deck "location"
      * @param destination player "hand location"
+     */
+    /**
+     * External Citation
+     *  Date: 14 March 2016
+     *  Problem: Need to move cards between decks
+     *  Resource: SJProj (SlapJack game supplied by Dr. Nuxoll)
+     *  Solution: We used a modified version of the code to move cards from one deck
+     *              to another
      */
     public void firstHandDests(DestDeck source, PlayerDecks destination){
         for(int i = 0; i < 3; i++){

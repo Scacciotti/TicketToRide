@@ -7,7 +7,13 @@ import tickets.scacciot17.tickettooride.ttr.card.DestCards;
 import tickets.scacciot17.tickettooride.ttr.card.TrainCards;
 
 /**
- * Created by Parker on 3/16/2016.
+ * Train Car deck
+ *
+ * @author Nick Scacciotti
+ * @author Nick Larson
+ * @author Jess Mann
+ * @author Parker Schibel
+ * @version March 2016
  */
 public class TrainCarDeck {
     // to satisfy Serializable interface
@@ -15,9 +21,8 @@ public class TrainCarDeck {
 
     // the cards in our deck; the last card in the ArrayList is the top card
     // in the deck
-    //protected ArrayList<Cards> cards;
-
     protected ArrayList<TrainCards> cards;
+
     /**
      * constructor, creating an empty deck
      */
@@ -29,6 +34,13 @@ public class TrainCarDeck {
      *
      * @param orig
      * 		the deck from which the copy should be made
+     */
+    /**
+     * External Citation
+     *  Date: 14 March 2016
+     *  Problem: Need to copy a deck
+     *  Resource: SJProj (SlapJack game supplied by Dr. Nuxoll)
+     *  Solution: We used a modified version of the code to copy a deck
      */
     public TrainCarDeck(TrainCarDeck orig) {
 		// synchronize to ensure that original is not being modified as we
@@ -43,11 +55,17 @@ public class TrainCarDeck {
     }
 
     /**
-     * adds one of each card, increasing the size of the deck by 52. Cards are added
-     * spades first (King to Ace), then similarly with hearts, diamonds and clubs.
+     * Randomly shuffles the deck of Train Cars
      *
      * @return
      * 		the deck
+     */
+    /**
+     * External Citation
+     *  Date: 14 March 2016
+     *  Problem: Need to shuffle a deck
+     *  Resource: SJProj (SlapJack game supplied by Dr. Nuxoll)
+     *  Solution: We used a modified version of the code to shuffle cards in the deck
      */
     public void shuffle() {
         // synchronize so that we don't have someone trying to modify the
@@ -69,6 +87,14 @@ public class TrainCarDeck {
      *
      * @param targetDeck
      * 		the deck to which the card should be moved
+     */
+    /**
+     * External Citation
+     *  Date: 14 March 2016
+     *  Problem: Need to move cards between decks
+     *  Resource: SJProj (SlapJack game supplied by Dr. Nuxoll)
+     *  Solution: We used a modified version of the code to move cards from one deck
+     *              to another
      */
     public void moveTopCardTo(TrainCarDeck targetDeck, TrainCarDeck sourceDeck) {
 
@@ -96,15 +122,15 @@ public class TrainCarDeck {
      * 		the deck that will get the cards
     */
     public void moveAllCardsTo(TrainCarDeck target, TrainCarDeck source) {
-    // if the source and target are the same, ignore
-    if (source == target) {
-    return;
-    }
+        // if the source and target are the same, ignore
+        if (source == target) {
+            return;
+        }
 
-    // keep moving cards until the current deck is empty
-    while (size() > 0) {
-    moveTopCardTo(target,source);
-    }
+        // keep moving cards until the current deck is empty
+        while (size() > 0) {
+            moveTopCardTo(target,source);
+        }
     }
 
     /**
@@ -173,6 +199,10 @@ public class TrainCarDeck {
         }
     }
 
+    /**
+     * Returns the TrainCards deck
+     * @return
+     */
     public ArrayList<TrainCards> getCards(){
         return cards;
     }

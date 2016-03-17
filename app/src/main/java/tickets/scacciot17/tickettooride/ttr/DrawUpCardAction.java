@@ -5,7 +5,12 @@ import tickets.scacciot17.tickettooride.Game.actionMsg.GameAction;
 
 /**
  * action to draw face up cards
- * Created by Parker on 3/15/2016.
+ *
+ * @author Nick Scacciotti
+ * @author Nick Larson
+ * @author Jess Mann
+ * @author Parker Schibel
+ * @version March 2016
  */
 public class DrawUpCardAction extends GameAction {
     /**

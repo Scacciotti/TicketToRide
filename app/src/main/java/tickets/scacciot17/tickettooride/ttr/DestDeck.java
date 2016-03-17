@@ -9,8 +9,11 @@ import tickets.scacciot17.tickettooride.ttr.card.TrainCards;
 /**
  * Creates the destination deck
  *
- * @author Parker
- * @version 3/15/2016.
+ * @author Nick Scacciotti
+ * @author Nick Larson
+ * @author Jess Mann
+ * @author Parker Schibel
+ * @version March 2016
  */
 public class DestDeck{
 
@@ -37,6 +40,13 @@ public class DestDeck{
 
     /**
      *     If a deck has been created, copy it.
+     */
+    /**
+     * External Citation
+     *  Date: 14 March 2016
+     *  Problem: Need to copy a deck
+     *  Resource: SJProj (SlapJack game supplied by Dr. Nuxoll)
+     *  Solution: We used a modified version of the code to copy a deck
      */
     public DestDeck(DestDeck orig){
         // synchronize to ensure that original is not being modified as we
@@ -95,6 +105,14 @@ public class DestDeck{
     /**
      * Shuffles the deck randomly
      *
+     */
+    /**
+     * External Citation
+     *  Date: 14 March 2016
+     *  Problem: Need to shuffle a deck
+     *  Resource: SJProj (SlapJack game supplied by Dr. Nuxoll)
+     *  Solution: We used a modified version of the code in the Deck Class
+     *  to shuffle a deck
      */
     public void shuffle() {
         // synchronize so that we don't have someone trying to modify the

@@ -8,10 +8,16 @@ import tickets.scacciot17.tickettooride.ttr.card.TrainCards;
 import tickets.scacciot17.tickettooride.Game.infoMsg.GameState;
 
 /**
- * Created by Nicka on 3/14/2016.
+ * Contains the state of the Ticket to ride game.
+ *
+ * @author Nick Scacciotti
+ * @author Nick Larson
+ * @author Jess Mann
+ * @author Parker Schibel
+ * @version March 2016
  */
 public class TTRState extends GameState {
-
+    //TTRState instance variables
     private FaceDownDeck allDown;
     private FaceUpDeck fiveUp;
     private DestDeck destinations;
@@ -42,7 +48,7 @@ public class TTRState extends GameState {
     }
 
     /**
-     *
+     * TTRState constructor
      */
     public TTRState(){
         numPlayers = 2;
@@ -196,6 +202,12 @@ public class TTRState extends GameState {
         }
     }
 
+    /**
+     * Checks if the track is a legal track
+     * @param currTrack
+     * @param trainAvailable
+     * @return
+     */
     public boolean isLegalTrack(Track currTrack, ArrayList<TrainCards> trainAvailable){
         int colorCount = 0;
         for (int i = 0; i < trainAvailable.size(); i++) {
@@ -211,6 +223,9 @@ public class TTRState extends GameState {
         }
     }
 
+    /**
+     * Sets tracks to be highlighted
+     */
     public void highlightTracks(){
         if(this.trackSelect)
         {
@@ -304,119 +319,240 @@ public class TTRState extends GameState {
         }
     }
 
+    /**
+     * Highlights chosen destination
+     * @param action
+     * @param spot
+     */
     public void chooseDests(ChooseDests action, int spot){
         if(destPool){
             boolean highlighted = destCardPool.getCards().get(spot).getHighlight();
             destCardPool.getCards().get(spot).setHighlight(!highlighted);
         }
     }
-    public FaceDownDeck getAllDown() {
+
+    /**
+     * Returns all face down cards
+     * @return
+     */
+   public FaceDownDeck getAllDown() {
         return allDown;
     }
     public Track getATestTrack(int i) {return testTracks[i];}
 
+    /**
+     * Sets all down
+     * @param allDown
+     */
     public void setAllDown(FaceDownDeck allDown) {
         this.allDown = allDown;
     }
 
+    /**
+     * Returns five face up cards
+     * @return
+     */
     public FaceUpDeck getFiveUp() {
         return fiveUp;
     }
 
+    /**
+     * sets face up cards
+     * @param fiveUp
+     */
     public void setFiveUp(FaceUpDeck fiveUp) {
         this.fiveUp = fiveUp;
     }
 
-    public DestDeck getDestinations() { return destinations; }
+    /**
+     * Returns destination deck
+     * @return
+     */
+    public DestDeck getDestinations() {
+        return destinations;
+    }
 
+    /**
+     * sets the destination deck
+     * @param destinations
+     */
     public void setDestinations(DestDeck destinations) {
         this.destinations = destinations;
     }
 
+    /**
+     * Returns discarded train cards
+     * @return
+     */
     public TrainCarDeck getDiscard() {
         return discardTrain;
     }
 
+    /**
+     * Sets discarded deck
+     * @param discard
+     */
     public void setDiscard(FaceDownDeck discard) {
         this.discardTrain = discard;
     }
 
+    /**
+     * Returns player ID
+     * @return
+     */
     public int getPlayerID() {
         return playerID;
     }
 
+    /**
+     * Sets player ID
+     *
+     * @param playerID
+     */
     public void setPlayerID(int playerID) {
         this.playerID = playerID;
     }
 
+    /**
+     * Returns numper of players
+     * @return
+     */
     public int getNumPlayers() {
         return numPlayers;
     }
 
+    /**
+     * Sets number of players
+     * @param numPlayers
+     */
     public void setNumPlayers(int numPlayers) {
         this.numPlayers = numPlayers;
     }
 
+    /**
+     * Returns scores
+     * @return
+     */
     public int[] getScores() {
         return scores;
     }
 
+    /**
+     * sets scores
+     * @param scores
+     */
     public void setScores(int[] scores) {
         this.scores = scores;
     }
 
+    /**
+     * returns player's decks
+     * @return
+     */
     public PlayerDecks[] getPlayerDecks() {
         return playerDecks;
     }
 
+    /**
+     * Sets player's decks
+     * @param playerDecks
+     */
     public void setPlayerDecks(PlayerDecks[] playerDecks) {
         this.playerDecks = playerDecks;
     }
 
+    /**
+     * returns if track is selected
+     * @return
+     */
     public Boolean getTrackSelect() {
         return trackSelect;
     }
 
+    /**
+     * Sets track selected
+     * @param trackSelect
+     */
     public void setTrackSelect(Boolean trackSelect) {
         this.trackSelect = trackSelect;
     }
 
+    /**
+     * Retruns if cards are selected
+     * @return
+     */
     public Boolean getCardSelect() {
         return cardSelect;
     }
 
+    /**
+     * Sets cards to be selected
+     * @param cardSelect
+     */
     public void setCardSelect(Boolean cardSelect) {
         this.cardSelect = cardSelect;
     }
 
+    /**
+     * retruns if destination clicked
+     * @return
+     */
     public Boolean getDestinationClick() {
         return destinationClick;
     }
 
+    /**
+     * Sets destination to be clicked
+     * @param destinationClick
+     */
     public void setDestinationClick(Boolean destinationClick) {
         this.destinationClick = destinationClick;
     }
 
+    /**
+     * Returns train card clicked
+     * @return
+     */
     public Boolean getTrainCardClick() {
         return trainCardClick;
     }
 
+    /**
+     * Sets the train card to true/false
+     * @param destinationClick
+     */
     public void setTrainCardClick(Boolean destinationClick) {
         this.trainCardClick = destinationClick;
     }
 
+    /**
+     * returns trainPlaceCLick
+     * @return
+     */
     public Boolean getTrainPlaceClick() {
         return trainPlaceClick;
     }
 
+    /**
+     * sets if destinationClick is true/false
+     * @param destinationClick
+     */
     public void setTrainPlaceClick(Boolean destinationClick) {
         this.trainPlaceClick = destinationClick;
     }
 
+    /**
+     * Returns trainTokens
+     * @return
+     */
     public int[] getTrainTokens() {
         return trainTokens;
     }
 
+    /**
+     * sets trainTokens
+     * @param trainTokens
+     */
     public void setTrainTokens(int[] trainTokens) {
         this.trainTokens = trainTokens;
     }

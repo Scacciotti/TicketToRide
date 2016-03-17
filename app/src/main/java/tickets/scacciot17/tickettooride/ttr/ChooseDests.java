@@ -4,7 +4,11 @@ import tickets.scacciot17.tickettooride.Game.GamePlayer;
 import tickets.scacciot17.tickettooride.Game.actionMsg.GameAction;
 
 /**
- * Created by Parker on 3/16/2016.
+ * @author Nick Scacciotti
+ * @author Nick Larson
+ * @author Jess Mann
+ * @author Parker Schibel
+ * @version March 2016
  */
 public class ChooseDests extends GameAction {
     /**

@@ -8,7 +8,11 @@ import tickets.scacciot17.tickettooride.ttr.card.TrainCards;
 /**
  * Creates the pile of face down train cards
  *
- * Created by Parker on 3/15/2016.
+ * @author Nick Scacciotti
+ * @author Nick Larson
+ * @author Jess Mann
+ * @author Parker Schibel
+ * @version March 2016
  */
 public class FaceDownDeck extends TrainCarDeck {
     //instance variable for highlighted when selected
@@ -21,6 +25,13 @@ public class FaceDownDeck extends TrainCarDeck {
     }
 
     //If a deck has been created, copy it.
+    /**
+     * External Citation
+     *  Date: 14 March 2016
+     *  Problem: Need to copy a deck
+     *  Resource: SJProj (SlapJack game supplied by Dr. Nuxoll)
+     *  Solution: We used a modified version of the code to copy a deck
+     */
     public FaceDownDeck(FaceDownDeck orig){
         // synchronize to ensure that original is not being modified as we
         // iterate over it

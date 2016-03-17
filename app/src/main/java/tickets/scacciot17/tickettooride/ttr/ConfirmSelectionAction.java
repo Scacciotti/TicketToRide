@@ -6,7 +6,11 @@ import tickets.scacciot17.tickettooride.Game.actionMsg.GameAction;
 /**
  * Confirms the GameAction of the player who made the selection
  *
- * Created by Parker on 3/16/2016.
+ *@author Nick Scacciotti
+ * @author Nick Larson
+ * @author Jess Mann
+ * @author Parker Schibel
+ * @version March 2016
  */
 public class ConfirmSelectionAction extends GameAction {
     /**
