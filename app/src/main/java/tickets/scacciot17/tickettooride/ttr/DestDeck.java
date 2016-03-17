@@ -202,7 +202,7 @@ public class DestDeck{
      * 		the top card in the deck, which is also removed,
      * 		or null if the deck was empty
      */
-    public Cards removeTopCard() {
+    public DestCards removeTopCard() {
         synchronized (this.cards) {
             if (cards.isEmpty()) return null;
             return cards.remove(cards.size()-1);
@@ -214,10 +214,23 @@ public class DestDeck{
      * 		the top card in the deck, without removing it; null
      * 		if the deck was empty
      */
-    public Cards peekAtTopCard() {
+    public DestCards peekAtTopCard() {
         synchronized (this.cards) {
             if (cards.isEmpty()) return null;
-            return cards.get(cards.size()-1);
+            return cards.get(cards.size() - 1);
+        }
+    }
+
+    public void createPool(DestDeck source){
+        for(int i = 0; i < 3; i++){
+            moveTopCardTo(this, source);
+        }
+    }
+
+    public void clearPool(DestDeck source){
+        int size = source.size();
+        for(int i = 0; i < size; i++){
+            moveTopCardTo(this, source);
         }
     }
 }

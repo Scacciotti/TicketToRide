@@ -1,7 +1,9 @@
 package tickets.scacciot17.tickettooride.ttr;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import tickets.scacciot17.tickettooride.ttr.card.DestCards;
 import tickets.scacciot17.tickettooride.ttr.card.TrainCards;
 import tickets.scacciot17.tickettooride.Game.infoMsg.GameState;
 
@@ -15,6 +17,7 @@ public class TTRState extends GameState {
     private DestDeck destinations;
     private TrainCarDeck discardTrain;
     private DestDeck discardDest;
+    private DestDeck destCardPool;
     private PlayerDecks[] playerDecks;
     private int playerID; //ID of the player whose turn it is
     private int numPlayers; //number of players for this game
@@ -24,8 +27,10 @@ public class TTRState extends GameState {
     private Boolean destinationClick; //If players needs to select 1-3 destination cards
     private Boolean trainCardClick;
     private Boolean trainPlaceClick;
+    private boolean destPool = true;
     private Track[] testTracks;
     protected int[] trainTokens; //train tokens available to player
+    private int trackSpot = -1;
 
     public Track[] getTestTracks() {
         return testTracks;
@@ -52,6 +57,7 @@ public class TTRState extends GameState {
         destinations.shuffle();
         discardTrain = new FaceDownDeck();
         discardDest = new DestDeck();
+        destCardPool = new DestDeck();
         scores = new int[numPlayers];
         playerID = 0;
         trainTokens = new int[numPlayers];
@@ -63,7 +69,7 @@ public class TTRState extends GameState {
         for(int i = 0; i < playerDecks.length; i++){
             playerDecks[i] = new PlayerDecks();
             playerDecks[i].firstHandTrains(allDown,playerDecks[i]);
-            playerDecks[i].firstHandDests(destinations,playerDecks[i]);
+            playerDecks[i].firstHandDests(destinations, playerDecks[i]);
         }
         trackSelect = false;
         cardSelect = true;
@@ -132,7 +138,6 @@ public class TTRState extends GameState {
             }
         }
     }
-
     /**
      * highlights selected face up cards, while also checking to see if face
      * down deck has had any highlighted cards
@@ -208,8 +213,10 @@ public class TTRState extends GameState {
         if(this.trackSelect)
         {
             for(int i = 0; i < testTracks.length; i++) {
-                if (isLegalTrack(testTracks[i], playerDecks[playerID].getPlayerTrains().getCards())){
-                    testTracks[i].setHighlight(true);
+                if(!testTracks[i].getCovered()) {
+                    if (isLegalTrack(testTracks[i], playerDecks[playerID].getPlayerTrains().getCards())) {
+                        testTracks[i].setHighlight(true);
+                    }
                 }
             }
         }
@@ -222,9 +229,14 @@ public class TTRState extends GameState {
     public void placeTrack(TrackPlaceAction action, int spot){
         if(!trainCardClick && !destinationClick) {
             highlightTracks();
-            if (testTracks[spot].getHighlight()) {
+            if (testTracks[spot].getHighlight() && !trainPlaceClick && !testTracks[spot].getSelected()) {
                 testTracks[spot].setSelected(true);
                 trainPlaceClick = true;
+                trackSpot = spot;
+            } else if(testTracks[spot].getSelected() && trainPlaceClick){
+                testTracks[spot].setSelected(false);
+                trainPlaceClick = false;
+                trackSpot = -1;
             }
         }
     }
@@ -235,19 +247,63 @@ public class TTRState extends GameState {
      * @param action
      */
     public void confirmSelection( ConfirmSelectionAction action){
-        if(trainCardClick){
-
+        if(trainPlaceClick){
+            testTracks[trackSpot].setCovered(true);
+            for(int i = 0; i < testTracks.length; i++){
+                testTracks[i].setSelected(false);
+                testTracks[i].setHighlight(false);
+            }
+            trainPlaceClick = false;
         }
-        else if(true){
-
+        else if(trainCardClick){
+            for(int i = 0; i < fiveUp.size(); i++){
+                if(fiveUp.getCards().get(i).getHighlight()){
+                    TrainCards temp = fiveUp.getCards().get(i);
+                    temp.setHighlight(false);
+                    fiveUp.getCards().remove(i);
+                    playerDecks[playerID].getPlayerTrains().add(temp);
+                    fiveUp.renewDeck(allDown);
+                }
+            }
+            for(int i = 0; i < allDown.size(); i++){
+                if(allDown.getCards().get(i).getHighlight()){
+                    TrainCards temp = allDown.getCards().get(i);
+                    temp.setHighlight(false);
+                    allDown.getCards().remove(i);
+                    playerDecks[playerID].getPlayerTrains().add(temp);
+                }
+            }
+            trainCardClick = false;
         }
-        else if(true){
+        else if(destinationClick){
+            destCardPool.createPool(destinations);
+            destPool = true;
+            destinationClick = false;
+        }
+        else if(destPool){
+            int size = destCardPool.size();
+            for(int i = 0; i < size; i++){
+                if(destCardPool.getCards().get(i).getHighlight()){
+                    DestCards temp = destCardPool.getCards().get(i);
+                    destCardPool.getCards().remove(i);
+                    playerDecks[playerID].getPlayerDests().add(temp);
+                }
+            }
+            destPool = false;
+        }
+    }
 
+    public void chooseDests(ChooseDests action, int spot){
+        if(destPool){
+            boolean highlighted = destCardPool.getCards().get(spot).getHighlight();
+            destCardPool.getCards().get(spot).setHighlight(!highlighted);
         }
     }
    public FaceDownDeck getAllDown() {
         return allDown;
     }
+    public Track getATestTrack(int i)
+    {return testTracks[i];}
 
     public void setAllDown(FaceDownDeck allDown) {
         this.allDown = allDown;
