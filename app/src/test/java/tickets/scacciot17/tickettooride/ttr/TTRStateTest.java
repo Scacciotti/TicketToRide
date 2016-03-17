@@ -196,5 +196,3 @@ public class TTRStateTest {
         assertTrue(testState.isLegalTrack(testTrack,testArray));
     }
 }
-}
-
