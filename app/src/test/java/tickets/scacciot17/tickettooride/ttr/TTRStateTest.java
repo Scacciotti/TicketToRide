@@ -86,7 +86,7 @@ public class TTRStateTest {
         GamePlayer player = new TTRHumanPlayer("TestMonkey");
         DrawDownCardAction drawDownCardAction = new DrawDownCardAction(player);
         //check face down deck nd is non empty
-testState.setTestTracks(false);
+
         /** Case 1: FaceDownDeck Full **/
         //select face down stack
         testState.highlightDownCard(drawDownCardAction);
