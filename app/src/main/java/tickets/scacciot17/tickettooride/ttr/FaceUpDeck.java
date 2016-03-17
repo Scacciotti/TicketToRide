@@ -7,6 +7,7 @@ import tickets.scacciot17.tickettooride.ttr.card.TrainCards;
 
 /**
  * represents the collection of face up train cards
+ *
  * Created by Parker on 3/15/2016.
  */
 public class FaceUpDeck extends TrainCarDeck {
@@ -42,6 +43,10 @@ public class FaceUpDeck extends TrainCarDeck {
         }
     }
 
+    /**
+     *
+     * @return - Returns the TrainCards Arraylist
+     */
     public ArrayList<TrainCards> getCards(){
         return cards;
     }

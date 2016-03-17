@@ -98,6 +98,7 @@ public class TTRStateTest {
         /** Case 1: FaceDownDeck Full **/
         //select face down stack
         testState.highlightDownCard(drawDownCardAction);
+        testState.highlightDownCard(drawDownCardAction);
         //assert on confirm player hand increases by 2
         int oldDeckSize = testState.getPlayerDecks()[0].getPlayerTrains().size();
         testState.setTrainCardClick(true);
@@ -133,31 +134,62 @@ public class TTRStateTest {
         ConfirmSelectionAction confirmSelectAction = new ConfirmSelectionAction(player);
         testState.confirmSelection(confirmSelectAction);
         assertEquals((oldDeckSize + 2), testState.getPlayerDecks()[0].getPlayerTrains().size());
+
     }
 
     @Test
     public void testPlaceTrack() throws Exception {
         TTRState testState = new TTRState();
+        GamePlayer player = new TTRHumanPlayer("TestMonkey");
+        ConfirmSelectionAction confirmSelectAction = new ConfirmSelectionAction(player);
+        DrawDownCardAction drawDownCardAction = new DrawDownCardAction(player);
+        DrawUpCardAction action = new DrawUpCardAction(player);
+        FaceUpDeck faceUpDeck = new FaceUpDeck();
+
         /** Case 1: Placing Track wihtout train cards (should fail) **/
         //give player random hand containing 0 blue trains
         //assert claim testTrack[0] fails
-        //assert score stayed the same
+        testState.getTestTracks()[0].setSelected(true);
+        testState.confirmSelection(confirmSelectAction);
+        int oldDeckSize = testState.getPlayerDecks()[0].getPlayerTrains().size();
+        assertEquals(oldDeckSize, testState.getPlayerDecks()[0].getPlayerTrains().size());
 
         /** Case 2: Place Track with Proper train cards**/
         //give player 2 blue trains
+        testState.getFiveUp().getCards().get(0).setType("Blue");
+        testState.getFiveUp().getCards().get(1).setType("Blue");
+        testState.highlightUpCard(action, 0);
+        testState.highlightUpCard(action, 1);
+        testState.confirmSelection(confirmSelectAction);
         //assert claim testTrack[0] passes
+        oldDeckSize = testState.getPlayerDecks()[0].getPlayerTrains().size();
+        assertEquals(oldDeckSize-2, testState.getPlayerDecks()[0].getPlayerTrains().size());
         //assert player score increased by 2
-        /** Case 2.3: Check Route Can't be double Calimed**/
+        /** Case 2.3: Check Route Can't be double Claimed**/
         //give player 2 blue cards
+        testState.getFiveUp().getCards().get(0).setType("Blue");
+        testState.getFiveUp().getCards().get(1).setType("Blue");
+        testState.highlightUpCard(action, 0);
+        testState.highlightUpCard(action, 1);
+        testState.confirmSelection(confirmSelectAction);
         //assert claim testTrack[0] fails (as it is already claimed)
-        //give player random hand containing only 1 yellow train
+        oldDeckSize = testState.getPlayerDecks()[0].getPlayerTrains().size();
+        testState.getTestTracks()[1].setSelected(true);
+        testState.confirmSelection(confirmSelectAction);
+        assertEquals(oldDeckSize, testState.getPlayerDecks()[0].getPlayerTrains().size());
 
-        /** **/
-        //assert claim testTrack[1] fails
-        //assert player score stayed the same
-        //give player 1 rainbow train
-        //assert claim testTrack[1] passes
-        //assert player score increased by 2
+
+        /** Case 3: Claim with Rainbow **/
+        //give player random hand containing 1 yellow train 1 rainbow
+        testState.getFiveUp().getCards().get(0).setType("Blue");
+        testState.getFiveUp().getCards().get(1).setType("Blue");
+        testState.highlightUpCard(action, 0);
+        testState.highlightUpCard(action, 1);
+        testState.confirmSelection(confirmSelectAction);
+        //assert claim testTrack[1]
+        oldDeckSize = testState.getPlayerDecks()[0].getPlayerTrains().size();
+        assertEquals(oldDeckSize, testState.getPlayerDecks()[0].getPlayerTrains().size());
+
     }
     /**
      * Draws from faceDown pile, checks to see if all cards
@@ -208,8 +240,8 @@ public class TTRStateTest {
         TTRState testState = new TTRState();
         Track trackTest[] = testState.getTestTracks();
         assertNotNull(trackTest);
-        //trackTest[0].setSelected();
-        //assertTrue(trackTest[0].getSelected());
+        trackTest[0].setSelected(true);
+        assertTrue(trackTest[0].getSelected());
     }
 
     /**
@@ -258,6 +290,6 @@ public class TTRStateTest {
         testArray.add(new TrainCards(5));
         testArray.add(new TrainCards(5));
         assertTrue(testArray.size() == 4);
-        assertTrue(testState.isLegalTrack(testTrack,testArray));
+        assertTrue(testState.isLegalTrack(testTrack, testArray));
     }
 }
