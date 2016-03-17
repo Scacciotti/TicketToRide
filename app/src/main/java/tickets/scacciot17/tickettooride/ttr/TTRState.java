@@ -253,6 +253,7 @@ public class TTRState extends GameState {
                 testTracks[i].setSelected(false);
                 testTracks[i].setHighlight(false);
             }
+            trainPlaceClick = false;
         }
         else if(trainCardClick){
             for(int i = 0; i < fiveUp.size(); i++){
@@ -272,10 +273,12 @@ public class TTRState extends GameState {
                     playerDecks[playerID].getPlayerTrains().add(temp);
                 }
             }
+            trainCardClick = false;
         }
         else if(destinationClick){
             destCardPool.createPool(destinations);
             destPool = true;
+            destinationClick = false;
         }
         else if(destPool){
             int size = destCardPool.size();
@@ -286,13 +289,13 @@ public class TTRState extends GameState {
                     playerDecks[playerID].getPlayerDests().add(temp);
                 }
             }
+            destPool = false;
         }
     }
 
     public void chooseDests(ChooseDests action, int spot){
         if(destPool){
-            boolean highlighted =
-                    destCardPool.getCards().get(spot).getHighlight();
+            boolean highlighted = destCardPool.getCards().get(spot).getHighlight();
             destCardPool.getCards().get(spot).setHighlight(!highlighted);
         }
     }
