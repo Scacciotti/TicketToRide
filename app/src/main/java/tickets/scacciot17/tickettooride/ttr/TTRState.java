@@ -64,7 +64,7 @@ public class TTRState extends GameState {
         for(int i = 0; i < playerDecks.length; i++){
             playerDecks[i] = new PlayerDecks();
             playerDecks[i].firstHandTrains(allDown,playerDecks[i]);
-            playerDecks[i].firstHandDests(destinations,playerDecks[i]);
+            playerDecks[i].firstHandDests(destinations, playerDecks[i]);
         }
         trackSelect = false;
         cardSelect = true;

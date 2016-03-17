@@ -30,17 +30,17 @@ public class FaceUpDeck extends TrainCarDeck {
         }
     }
 
-//    //After a deck has been created as well as a FaceDownDeck, take the first
-//    //five cards from the FaceDownDeck and put them in the FaceUpDeck.
-//    public Deck add5(Deck source) {
-//        // add the cards
-//        for(int i = 0; i < 5; i++) {
-//            TrainCards temp = (TrainCards) source.removeTopCard();
-//            this.add(source.removeTopCard());
-//        }
-//        // return the deck
-//        return this;
-//    }
+    //After a deck has been created as well as a FaceDownDeck, take the first
+    //five cards from the FaceDownDeck and put them in the FaceUpDeck.
+    public Deck add5(Deck source) {
+        // add the cards
+        for(int i = 0; i < 5; i++) {
+            TrainCards temp = (TrainCards) source.removeTopCard();
+            this.add(source.removeTopCard());
+        }
+        // return the deck
+        return this;
+    }
 
     public void firstFive(FaceDownDeck source){
         for(int i = 0; i < 5; i++){

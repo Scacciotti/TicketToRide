@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
+import tickets.scacciot17.tickettooride.Game.GamePlayer;
 import tickets.scacciot17.tickettooride.ttr.card.DestCards;
 import tickets.scacciot17.tickettooride.ttr.card.TrainCards;
 
@@ -19,17 +20,39 @@ public class TTRStateTest {
         TTRState myState = new TTRState();
         FaceUpDeck faceUpDeck = myState.getFiveUp();
         int size = faceUpDeck.size();
+        int selectedCardCount = 0;
         for(int i = 0; i < size; i++){
             assertNotEquals(faceUpDeck.getCards().get(i), null);
         }
-        //assert there are five non-empty face up train cards
+        assertTrue(size == 5);
+
 
         /** Case 1: 2 Reg **/
         //select two non rainbow cards
+        GamePlayer player = new TTRHumanPlayer("TestMonkey");
+        DrawUpCardAction action = new DrawUpCardAction(player);
+        for (int i = 0; i < 5; i++){
+            if(myState.getFiveUp().getCards().get(i).getType() != "Rainbow" && selectedCardCount < 3){
+                myState.highlightUpCard(action, i);
+                selectedCardCount++;
+            } else {
+                //Replace cards so that theres two non
+                //TODO
+                return;
+            }
+
+        }
         //assert that on confirm they are added to player hand
+        //TODO
         //assert that new cards updates in 'five up'
+        size = faceUpDeck.size();
+        for(int i = 0; i < size; i++){
+            assertNotEquals(faceUpDeck.getCards().get(i), null);
+        }
+        assertTrue(size == 5);
 
         /** Case 2: 1 Rainbow 1 Reg (should fail) **/
+        selectedCardCount = 0;
         //select one rainbow card, one train card
         //assert that confirm fails
         //assert five up remain the same
@@ -62,7 +85,7 @@ public class TTRStateTest {
         //select face down stack
         //assert on confirm player hand increases by 1
         //select face down stack
-        //assert on confirm no changes/craches
+        //assert on confirm no changes/
     }
 
     @Test
@@ -123,10 +146,18 @@ public class TTRStateTest {
     {
         TTRState testState = new TTRState();
         testState.setNumPlayers(3);
-        assertTrue("3 players declared",testState.getNumPlayers() == 3);
+        assertTrue("3 players declared", testState.getNumPlayers() == 3);
         assertNotNull(testState.getFiveUp());
         assertNotNull(testState.getTestTracks());
-        assertTrue(!testState.getCardSelect());//default TTRState is false
+        testState.setCardSelect(true);
+        assertTrue(testState.getCardSelect());//default TTRState is false
+    }
+    @Test
+    public void testHighlightTracks() throws Exception
+    {
+        TTRState testState = new TTRState();
+        testState.setTrackSelect(true);
+        assertTrue(testState.getTrackSelect());
     }
 
 }
