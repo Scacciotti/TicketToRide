@@ -43,7 +43,21 @@ public class TTRStateTest {
     }
     @Test
     public void testPlaceTrack() throws Exception {
-
+        TTRState testState = new TTRState();
+        //give player random hand containing 0 blue trains
+        //assert claim testTrack[0] fails
+        //assert score stayed the same
+        //give player 2 blue trains
+        //assert claim testTrack[0] passes
+        //assert player score increased by 2
+        //give player 2 blue cards
+        //assert claim testTrack[0] fails (as it is already claimed)
+        //give player random hand containing only 1 yellow train
+        //assert claim testTrack[1] fails
+        //assert player score stayed the same
+        //give player 1 rainbow train
+        //assert claim testTrack[1] passes
+        //assert player score increased by 2
     }
 
     //mimic I made for practice

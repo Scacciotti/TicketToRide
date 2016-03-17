@@ -26,6 +26,14 @@ public class TTRState extends GameState {
     private Track[] testTracks;
     protected int[] trainTokens; //train tokens availible to player
 
+    public Track[] getTestTracks() {
+        return testTracks;
+    }
+
+    public void setTestTracks(Track[] testTracks) {
+        this.testTracks = testTracks;
+    }
+
     /**
      *
      */
@@ -44,7 +52,6 @@ public class TTRState extends GameState {
         discard = new Deck();
         scores = new int[numPlayers];
         playerID = 0;
-        //tracks = new Tracks();
         trainTokens = new int[numPlayers];
         playerDecks = new PlayerDecks[numPlayers];
         for(int i =0; i < trainTokens.length; i++){
