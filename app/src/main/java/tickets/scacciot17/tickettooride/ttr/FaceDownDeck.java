@@ -7,10 +7,11 @@ import tickets.scacciot17.tickettooride.ttr.card.TrainCards;
 
 /**
  * Creates the pile of face down train cards
+ *
  * Created by Parker on 3/15/2016.
  */
 public class FaceDownDeck extends TrainCarDeck {
-
+    //instance variable for highlighted when selected
     private boolean highlight;
 
     //Upon initial creation of the deck, create an ArrayList of cards
@@ -49,10 +50,18 @@ public class FaceDownDeck extends TrainCarDeck {
         }
     }
 
+    /**
+     *
+     * @return - Retruns the deck
+     */
     public ArrayList<TrainCards> getCards(){
         return cards;
     }
 
+    /**
+     *
+     * @param value - Sets the new highlighted value
+     */
     public void setHighlight(boolean value){
         highlight = value;
     }
