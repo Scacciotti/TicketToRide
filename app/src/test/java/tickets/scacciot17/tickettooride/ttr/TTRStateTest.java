@@ -161,7 +161,8 @@ public class TTRStateTest {
         testState.highlightUpCard(action, 1);
         testState.confirmSelection(confirmSelectAction);
         //assert claim testTrack[0] passes
-        oldDeckSize = testState.getPlayerDecks()[0].getPlayerTrains().size();        testState.getTestTracks()[0].setSelected(true);
+        oldDeckSize = testState.getPlayerDecks()[0].getPlayerTrains().size();
+        testState.getTestTracks()[0].setSelected(true);
         testState.confirmSelection(confirmSelectAction);
         assertEquals(oldDeckSize-2, testState.getPlayerDecks()[0].getPlayerTrains().size());
 
