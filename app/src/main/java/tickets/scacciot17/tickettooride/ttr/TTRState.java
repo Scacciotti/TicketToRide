@@ -23,7 +23,7 @@ public class TTRState extends GameState {
     private Boolean destinationClick; //If players needs to select 1-3 destination cards
     private Boolean trainCardClick;
     private Boolean trainPlaceClick;
-    //private Tracks tracks; //all tracks in game
+    private Track[] testTracks;
     protected int[] trainTokens; //train tokens availible to player
 
     /**
@@ -58,6 +58,16 @@ public class TTRState extends GameState {
         destinationClick = false;
         trainCardClick = false;
         trainPlaceClick = false;
+        testTracks = new Track[8];
+        testTracks[0] = new Track(2, "Blue", "PittsBurgh", "Boston");
+        testTracks[1] = new Track(2, "Yellow", "PittsBurgh", "Boston");
+        testTracks[2] = new Track(2, "Orange", "PittsBurgh", "Boston");
+        testTracks[3] = new Track(2, "Black", "PittsBurgh", "Boston");
+        testTracks[4] = new Track(2, "White", "PittsBurgh", "Boston");
+        testTracks[5] = new Track(2, "Pink", "PittsBurgh", "Boston");
+        testTracks[6] = new Track(2, "Red", "PittsBurgh", "Boston");
+        testTracks[7] = new Track(2, "Green", "PittsBurgh", "Boston");
+
     }
       //TODO
     /**
@@ -167,15 +177,41 @@ public class TTRState extends GameState {
         }
     }
 
+    public boolean isLegalTrack(Track currTrack, ArrayList<TrainCards> trainAvailable){
+        int colorCount = 0;
+        for (int i = 0; i < trainAvailable.size(); i++) {
+            if (trainAvailable.get(i).getType().equals(currTrack.getTrainColor())) {
+                colorCount++;
+            }
+        }
+        if(colorCount >= currTrack.getTrainTrackNum()){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    public void highlightTracks(){
+        if(this.trackSelect)
+        {
+            for(int i = 0; i < testTracks.length; i++) {
+                if (isLegalTrack(testTracks[i], playerDecks[playerID].getPlayerTrains())){
+                    testTracks[i].setHighlight(true);
+                }
+            }
+        }
+    }
+
     /**
      * Places a track on game board
      * @param action user generated event
      */
-    public void placeTrack( TrackPlaceAction action){
-        if(this.trackSelect)
-        {
+    public void placeTrack(TrackPlaceAction action, int spot){
+        highlightTracks();
+        if(testTracks[spot].getHighlight()){
+            testTracks[spot].setSelected(true);
         }
-
     }
 
     /**
