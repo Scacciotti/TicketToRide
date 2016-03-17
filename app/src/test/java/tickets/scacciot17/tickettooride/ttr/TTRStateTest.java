@@ -88,6 +88,11 @@ public class TTRStateTest {
         assertTrue(size == 5);
     }
 
+    /**
+     * Various checks to make sure cards drawn from the
+     * face down pile are being implemented correctly
+     * @throws Exception
+     */
     @Test
     public void testDrawFaceDownTrainCard() throws Exception {
         TTRState testState = new TTRState();
@@ -136,6 +141,11 @@ public class TTRStateTest {
 
     }
 
+    /**
+     * checks to make sure trains tokens are being
+     * placed on the board correctly
+     * @throws Exception
+     */
     @Test
     public void testPlaceTrack() throws Exception {
         TTRState testState = new TTRState();
@@ -205,7 +215,6 @@ public class TTRStateTest {
             assertNotNull(testcard);
         }
     }
-
     /**
      * draws destination cards and checks to ensure that they
      * are not not
@@ -233,13 +242,18 @@ public class TTRStateTest {
         PlayerDecks testDeck[] = testState.getPlayerDecks();
         assertNotNull(testDeck);
     }
+
+    /**
+     * Tests to see if the tracks (test tracks in this case)
+     * are being copied over
+     * @throws Exception
+     */
     @Test
     public void testTrackSelect() throws Exception
     {
         TTRState testState = new TTRState();
         Track trackTest[] = testState.getTestTracks();
         assertNotNull(trackTest);
-        //trackTest[0].setSelected();
         assertFalse(trackTest[0].getSelected());
     }
 
