@@ -70,6 +70,10 @@ public class TTRState extends GameState {
         playerID = copyState.getPlayerID();
     }
 
+    /**
+     * Deselects
+     * @param action
+     */
     public void changeMode(ChangeModeAction action){
         if(this.getCardSelect()) {
             this.setCardSelect(!this.getCardSelect());
@@ -77,6 +81,10 @@ public class TTRState extends GameState {
         }
     }
 
+    /**
+     * highlights selected face down cards that the user selects
+     * @param action is user event
+     */
     public void highlightDownCard(DrawDownCardAction action) {
         if (this.getCardSelect() && this.getDestinationClick()) {
             int size = this.getAllDown().size();
@@ -93,6 +101,12 @@ public class TTRState extends GameState {
         }
     }
 
+    /**
+     * highlights selected face up cards, while also checking to see if face
+     * down deck has had any highlighted cards
+     * @param action user action
+     * @param spot location of click/ item selection
+     */
     public void highlightUpCard(DrawUpCard1Action action, int spot){
         if(this.getCardSelect() && this.getDestinationClick()) {
             int highlightCount = 0;
@@ -125,6 +139,7 @@ public class TTRState extends GameState {
         }
     }
     public void highlightDestCard( DrawDestCardAction action){
+
 
     }
     public void placeTrack( TrackPlaceAction action){
