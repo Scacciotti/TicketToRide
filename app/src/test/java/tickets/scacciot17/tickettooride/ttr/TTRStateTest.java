@@ -16,6 +16,14 @@ import static org.junit.Assert.*;
  */
 public class TTRStateTest {
 
+
+    /**
+     * checks various types of face up card draws to
+     * ensure that they follow appropriate rules
+     * (i.e. locomotive ("rainbow") cards can only be drawn
+     * singularly)
+     * @throws Exception
+     */
     @Test
     public void testDrawFaceUpTrainCards() throws Exception {
         TTRState testState = new TTRState();
@@ -98,6 +106,11 @@ public class TTRStateTest {
         assertEquals((oldDeckSize + 2), testState.getPlayerDecks()[0].getPlayerTrains().size());
     }
 
+    /**
+     * Various types of cards draws from the face up, and
+     * face down decks
+     * @throws Exception
+     */
     @Test
     public void testDrawComboTrainCard() throws Exception {
         TTRState testState = new TTRState();
@@ -142,15 +155,17 @@ public class TTRStateTest {
 
         /** Case 2: Place Track with Proper train cards**/
         //give player 2 blue trains
-        testState.getFiveUp().getCards().get(0).setType("Blue");
-        testState.getFiveUp().getCards().get(1).setType("Blue");
+        testState.getFiveUp().getCards().get(3).setType("Blue");
+        testState.getFiveUp().getCards().get(4).setType("Blue");
         testState.highlightUpCard(action, 0);
         testState.highlightUpCard(action, 1);
         testState.confirmSelection(confirmSelectAction);
         //assert claim testTrack[0] passes
         oldDeckSize = testState.getPlayerDecks()[0].getPlayerTrains().size();
+        testState.getTestTracks()[0].setSelected(true);
+        testState.confirmSelection(confirmSelectAction);
         assertEquals(oldDeckSize-2, testState.getPlayerDecks()[0].getPlayerTrains().size());
-        //assert player score increased by 2
+
         /** Case 2.3: Check Route Can't be double Claimed**/
         //give player 2 blue cards
         testState.getFiveUp().getCards().get(0).setType("Blue");
@@ -177,7 +192,11 @@ public class TTRStateTest {
         assertEquals(oldDeckSize, testState.getPlayerDecks()[0].getPlayerTrains().size());
 
     }
-
+    /**
+     * Draws from faceDown pile, checks to see if all cards
+     * are not null
+     * @throws Exception
+     */
     @Test
     public void testDrawDownCard() throws Exception
     {
@@ -188,6 +207,12 @@ public class TTRStateTest {
             assertNotNull(testcard);
         }
     }
+
+    /**
+     * draws destination cards and checks to ensure that they
+     * are not not
+     * @throws Exception
+     */
     @Test
     public void testDrawDestination() throws Exception
     {
@@ -198,6 +223,11 @@ public class TTRStateTest {
             assertNotNull(testCard);
         }
     }
+
+    /**
+     * copies over player deck and checks to see if null
+     * @throws Exception
+     */
     @Test
     public void testPlayerDeckTrains() throws Exception
     {
@@ -214,6 +244,12 @@ public class TTRStateTest {
         //trackTest[0].setSelected();
         assertFalse(trackTest[0].getSelected());
     }
+
+    /**
+     * Various default tests and modifications of the State constructor
+     * to ensure it handles them properly
+     * @throws Exception
+     */
     @Test
     public void testTTRStateConstructor() throws Exception
     {
@@ -225,6 +261,11 @@ public class TTRStateTest {
         testState.setCardSelect(true);
         assertTrue(testState.getCardSelect());//default TTRState is false
     }
+
+    /**
+     * Sets a highlight true for all tracks, checks to see if all true
+     * @throws Exception
+     */
     @Test
     public void testHighlightTracks() throws Exception
     {
@@ -232,6 +273,12 @@ public class TTRStateTest {
         testState.setTrackSelect(true);
         assertTrue(testState.getTrackSelect());
     }
+
+    /**
+     * References a test track and creates 4 black cards
+     * then sees if the isLegalTrack properly handles it
+     * @throws Exception
+     */
     @Test
     public void testIsLegalTrack() throws Exception
     {
