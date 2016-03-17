@@ -1,4 +1,4 @@
-package tickets.scacciot17.tickettooride.Game.card;
+package tickets.scacciot17.tickettooride.ttr.card;
 
 /**
  * Created by Parker on 3/15/2016.

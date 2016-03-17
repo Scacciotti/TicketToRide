@@ -1,12 +1,11 @@
 package tickets.scacciot17.tickettooride.ttr;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import tickets.scacciot17.tickettooride.Game.GamePlayer;
 import tickets.scacciot17.tickettooride.Game.LocalGame;
 import tickets.scacciot17.tickettooride.Game.actionMsg.GameAction;
-import tickets.scacciot17.tickettooride.Game.card.TrainCards;
+import tickets.scacciot17.tickettooride.ttr.card.TrainCards;
 
 /**
  * Controls the game, allowing actions to be performed by

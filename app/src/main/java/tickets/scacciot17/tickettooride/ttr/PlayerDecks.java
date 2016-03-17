@@ -2,8 +2,8 @@ package tickets.scacciot17.tickettooride.ttr;
 
 import java.util.ArrayList;
 
-import tickets.scacciot17.tickettooride.Game.card.DestCards;
-import tickets.scacciot17.tickettooride.Game.card.TrainCards;
+import tickets.scacciot17.tickettooride.ttr.card.DestCards;
+import tickets.scacciot17.tickettooride.ttr.card.TrainCards;
 
 /**
  * Created by Parker on 3/16/2016.

@@ -3,7 +3,7 @@ package tickets.scacciot17.tickettooride.ttr;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import tickets.scacciot17.tickettooride.Game.card.Cards;
+import tickets.scacciot17.tickettooride.ttr.card.Cards;
 
 /**
  * Deck class - represents a deck of cards (not necessarily a full one)

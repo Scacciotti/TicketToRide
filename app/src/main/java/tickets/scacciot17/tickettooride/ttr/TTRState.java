@@ -2,7 +2,7 @@ package tickets.scacciot17.tickettooride.ttr;
 
 import java.util.ArrayList;
 
-import tickets.scacciot17.tickettooride.Game.card.TrainCards;
+import tickets.scacciot17.tickettooride.ttr.card.TrainCards;
 import tickets.scacciot17.tickettooride.Game.infoMsg.GameState;
 
 /**

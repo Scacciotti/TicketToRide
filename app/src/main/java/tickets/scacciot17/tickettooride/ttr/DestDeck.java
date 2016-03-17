@@ -2,7 +2,7 @@ package tickets.scacciot17.tickettooride.ttr;
 
 import java.util.ArrayList;
 
-import tickets.scacciot17.tickettooride.Game.card.DestCards;
+import tickets.scacciot17.tickettooride.ttr.card.DestCards;
 
 /**
  * Creates the destination deck
