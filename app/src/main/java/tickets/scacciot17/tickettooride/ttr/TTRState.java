@@ -25,7 +25,7 @@ public class TTRState extends GameState {
     private Boolean trainCardClick;
     private Boolean trainPlaceClick;
     private Track[] testTracks;
-    protected int[] trainTokens; //train tokens availible to player
+    protected int[] trainTokens; //train tokens available to player
 
     public Track[] getTestTracks() {
         return testTracks;
@@ -245,7 +245,6 @@ public class TTRState extends GameState {
 
         }
     }
-
    public FaceDownDeck getAllDown() {
         return allDown;
     }
