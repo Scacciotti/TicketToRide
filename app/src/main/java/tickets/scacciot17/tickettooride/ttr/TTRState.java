@@ -129,13 +129,11 @@ public class TTRState extends GameState {
         if (this.getCardSelect() && !this.getDestinationClick()) {
             int size = this.getAllDown().size();
             TrainCards c = this.getAllDown().getCards().get(size - 1);
-            TrainCards c2 = this.getAllDown().getCards().get(size - 2);
-            if (c.getHighlight() && c2.getHighlight()) {
-                return;
-            } else if (c.getHighlight()) {
-                c2.setHighlight(true);
-            } else {
-                c.setHighlight(true);
+            if (allDown.getHighlight()) {
+                allDown.setHighlight(false);
+            } else if (allDown.getHighlight()) {
+                allDown.setHighlight(true);
+                onlyDownDeck = true;
             }
         }
     }
@@ -286,14 +284,6 @@ public class TTRState extends GameState {
                 onlyDownDeck = false;
                 allDown.setHighlight(false);
             }
-//            for(int i = 0; i < allDown.size(); i++){
-//                if(allDown.getCards().get(i).getHighlight()){
-//                    TrainCards temp = allDown.getCards().get(i);
-//                    temp.setHighlight(false);
-//                    allDown.getCards().remove(i);
-//                    playerDecks[playerID].getPlayerTrains().add(temp);
-//                }
-//            }
             trainCardClick = false;
         }
         else if(destinationClick){

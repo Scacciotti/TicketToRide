@@ -165,15 +165,17 @@ public class TTRStateTest {
 
         /** Case 2: Place Track with Proper train cards**/
         //give player 2 blue trains
-        testState.getFiveUp().getCards().get(0).setType("Blue");
-        testState.getFiveUp().getCards().get(1).setType("Blue");
-        testState.highlightUpCard(action, 0);
-        testState.highlightUpCard(action, 1);
+        testState.getFiveUp().getCards().get(3).setType("Blue");
+        testState.getFiveUp().getCards().get(4).setType("Blue");
+        testState.highlightUpCard(action, 3);
+        testState.highlightUpCard(action, 4);
         testState.confirmSelection(confirmSelectAction);
         //assert claim testTrack[0] passes
         oldDeckSize = testState.getPlayerDecks()[0].getPlayerTrains().size();
+        testState.getTestTracks()[0].setSelected(true);
+        testState.confirmSelection(confirmSelectAction);
         assertEquals(oldDeckSize-2, testState.getPlayerDecks()[0].getPlayerTrains().size());
-        //assert player score increased by 2
+
         /** Case 2.3: Check Route Can't be double Claimed**/
         //give player 2 blue cards
         testState.getFiveUp().getCards().get(0).setType("Blue");
@@ -197,7 +199,7 @@ public class TTRStateTest {
         testState.confirmSelection(confirmSelectAction);
         //assert claim testTrack[1]
         oldDeckSize = testState.getPlayerDecks()[0].getPlayerTrains().size();
-        assertEquals(oldDeckSize, testState.getPlayerDecks()[0].getPlayerTrains().size());
+        assertEquals(oldDeckSize-2, testState.getPlayerDecks()[0].getPlayerTrains().size());
 
     }
     /**
