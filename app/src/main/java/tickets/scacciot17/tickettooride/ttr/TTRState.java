@@ -299,11 +299,10 @@ public class TTRState extends GameState {
             destCardPool.getCards().get(spot).setHighlight(!highlighted);
         }
     }
-   public FaceDownDeck getAllDown() {
+    public FaceDownDeck getAllDown() {
         return allDown;
     }
-    public Track getATestTrack(int i)
-    {return testTracks[i];}
+    public Track getATestTrack(int i) {return testTracks[i];}
 
     public void setAllDown(FaceDownDeck allDown) {
         this.allDown = allDown;
@@ -317,9 +316,7 @@ public class TTRState extends GameState {
         this.fiveUp = fiveUp;
     }
 
-    public DestDeck getDestinations() {
-        return destinations;
-    }
+    public DestDeck getDestinations() { return destinations; }
 
     public void setDestinations(DestDeck destinations) {
         this.destinations = destinations;
