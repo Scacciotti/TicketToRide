@@ -254,6 +254,7 @@ public class TTRState extends GameState {
             for(int i = 0; i < fiveUp.size(); i++){
                 if(fiveUp.getCards().get(i).getHighlight()){
                     TrainCards temp = fiveUp.getCards().get(i);
+                    temp.setHighlight(false);
                     fiveUp.getCards().remove(i);
                     playerDecks[playerID].getPlayerTrains().add(temp);
                     fiveUp.renewDeck(allDown);
@@ -262,12 +263,13 @@ public class TTRState extends GameState {
             for(int i = 0; i < allDown.size(); i++){
                 if(allDown.getCards().get(i).getHighlight()){
                     TrainCards temp = allDown.getCards().get(i);
+                    temp.setHighlight(false);
                     allDown.getCards().remove(i);
                     playerDecks[playerID].getPlayerTrains().add(temp);
                 }
             }
         }
-        else if(true){
+        else if(destinationClick){
 
         }
     }
