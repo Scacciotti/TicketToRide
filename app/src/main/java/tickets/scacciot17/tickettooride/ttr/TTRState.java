@@ -2,6 +2,7 @@ package tickets.scacciot17.tickettooride.ttr;
 
 import java.util.ArrayList;
 
+import tickets.scacciot17.tickettooride.ttr.card.DestCards;
 import tickets.scacciot17.tickettooride.ttr.card.TrainCards;
 import tickets.scacciot17.tickettooride.Game.infoMsg.GameState;
 
@@ -15,6 +16,7 @@ public class TTRState extends GameState {
     private DestDeck destinations;
     private TrainCarDeck discardTrain;
     private DestDeck discardDest;
+    private DestDeck destCardPool;
     private PlayerDecks[] playerDecks;
     private int playerID; //ID of the player whose turn it is
     private int numPlayers; //number of players for this game
@@ -24,6 +26,7 @@ public class TTRState extends GameState {
     private Boolean destinationClick; //If players needs to select 1-3 destination cards
     private Boolean trainCardClick;
     private Boolean trainPlaceClick;
+    private boolean destPool = true;
     private Track[] testTracks;
     protected int[] trainTokens; //train tokens available to player
     private int trackSpot = -1;
@@ -53,6 +56,7 @@ public class TTRState extends GameState {
         destinations.shuffle();
         discardTrain = new FaceDownDeck();
         discardDest = new DestDeck();
+        destCardPool = new DestDeck();
         scores = new int[numPlayers];
         playerID = 0;
         trainTokens = new int[numPlayers];
@@ -270,7 +274,26 @@ public class TTRState extends GameState {
             }
         }
         else if(destinationClick){
+            destCardPool.createPool(destinations);
+            destPool = true;
+        }
+        else if(destPool){
+            int size = destCardPool.size();
+            for(int i = 0; i < size; i++){
+                if(destCardPool.getCards().get(i).getHighlight()){
+                    DestCards temp = destCardPool.getCards().get(i);
+                    destCardPool.getCards().remove(i);
+                    playerDecks[playerID].getPlayerDests().add(temp);
+                }
+            }
+        }
+    }
 
+    public void chooseDests(ChooseDests action, int spot){
+        if(destPool){
+            boolean highlighted =
+                    destCardPool.getCards().get(spot).getHighlight();
+            destCardPool.getCards().get(spot).setHighlight(!highlighted);
         }
     }
    public FaceDownDeck getAllDown() {
