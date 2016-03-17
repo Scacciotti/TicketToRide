@@ -17,30 +17,49 @@ public class TTRStateTest {
     @Test
     public void testDrawFaceUpTrainCards() throws Exception {
         TTRState myState = new TTRState();
-        FaceUpDeck faceUpDeck = myState.getFiveUp();
+        //assert there are five non-empty face up train cards
 
-        /** Test there are five face up train cards**/
-        int len = faceUpDeck.getCards().size();
-        assertTrue(len == 5);
-     //   for(TrainCards card : faceUpDeck.getCards()){
-     //       assertNotEquals(card, null);
-     //   }
-        /** Test if Two Non Locomotive Cards can be drawn **/
-        int count = 0;
-        for(int i = 0; i < 4; i++){
-            if (faceUpDeck.getCards().get(i).getType() != "Rainbow")  {
-                count++;
-            }
-        }
-        if(count > 1){
-            faceUpDeck.moveTopCardTo(faceUpDeck, myState.getPlayerDecks()[0]);
-            faceUpDeck.moveTopCardTo(faceUpDeck, myState.getPlayerDecks()[0]);
-        } else {
-            //TODO
-        }
+        /** Case 1: 2 Reg **/
+        //select two non rainbow cards
+        //assert that on confirm they are added to player hand
+        //assert that new cards updates in 'five up'
 
+        /** Case 2: 1 Rainbow 1 Reg (should fail) **/
+        //select one rainbow card, one train card
+        //assert that confirm fails
+        //assert five up remain the same
+        //assert that
+
+        /** Case 3: 1 Rainbow **/
+        //select one rainbow card
+        //assert on confirm rainbow is added to hand
+        //assert five up has new card
 
     }
+
+    @Test
+    public void testDrawFaceDownTrainCard() throws Exception {
+        TTRState testState = new TTRState();
+        //check face down deck exists and is non empty
+
+        /** Case 1: FaceDownDeck Full **/
+        //select face down stack
+        //assert on confirm player hand increases by 2
+        //assert FaceDownDeck size decreased by 2
+
+        /** Case 2: FaceDownDeck has 1 Card, Discard Full **/
+        //select face down stack
+        //assert on confirm player hand increases by 2
+        //discard pile should reshuffle itself in
+        //assert discard empty
+
+        /** Case 3: FaceDownDeck has 1 Card, Discard Empty **/
+        //select face down stack
+        //assert on confirm player hand increases by 1
+        //select face down stack
+        //assert on confirm no changes/craches
+    }
+
     @Test
     public void testPlaceTrack() throws Exception {
         TTRState testState = new TTRState();
