@@ -10,7 +10,7 @@ import android.util.Log;
  */
 public class Track {
     private int trainTrackNum = 0;
-    private String trainColor = null;
+    private String trackColor = null;
     private Boolean selected = false;
     private Boolean highlight = false;
     private Boolean covered = false;
@@ -23,14 +23,14 @@ public class Track {
     /**
      * Constructor for track object
      * @param trainTrackNum the length/number of train cars needed to claim route
-     * @param trainColor  color assigned to trains on the track route
+     * @param trackColor  color assigned to track route
      * @param secondCity collection of paths representing the locations for placed train tokens
      * @param firstCity area around path that is selectable by user
      */
 
-    public Track(int trainTrackNum, String trainColor, String firstCity, String secondCity){
+    public Track(int trainTrackNum, String trackColor, String firstCity, String secondCity){
         this.trainTrackNum = trainTrackNum;
-        this.trainColor = trainColor;
+        this.trackColor = trackColor;
         startCity = firstCity;
         endCity = secondCity;
         highlight = false;
@@ -60,7 +60,7 @@ public class Track {
     }
 
     public String getTrainColor(){
-        return trainColor;
+        return trackColor;
     }
 
     public Path getTrack(){
