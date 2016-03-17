@@ -31,8 +31,10 @@ public class TTRState extends GameState {
         allDown = new FaceDownDeck();
         allDown.startDeck();
         allDown.shuffle();
+
         fiveUp = new FaceUpDeck();
         fiveUp.firstFive(allDown);
+
         destinations = new DestDeck();
         destinations.firstDeck();
         destinations.shuffle();
@@ -45,7 +47,7 @@ public class TTRState extends GameState {
         for(int i =0; i < trainTokens.length; i++){
             trainTokens[i] = 45;
             scores[i] = 0;
-        };
+        }
         for(int i = 0; i < playerDecks.length; i++){
             playerDecks[i] = new PlayerDecks();
             playerDecks[i].firstHand(allDown,playerDecks[i]);
@@ -217,6 +219,14 @@ public class TTRState extends GameState {
 
     public void setScores(int[] scores) {
         this.scores = scores;
+    }
+
+    public PlayerDecks[] getPlayerDecks() {
+        return playerDecks;
+    }
+
+    public void setPlayerDecks(PlayerDecks[] playerDecks) {
+        this.playerDecks = playerDecks;
     }
 
     public Boolean getTrackSelect() {

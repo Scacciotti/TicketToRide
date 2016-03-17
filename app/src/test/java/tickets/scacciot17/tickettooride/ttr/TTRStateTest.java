@@ -12,12 +12,31 @@ import static org.junit.Assert.*;
 public class TTRStateTest {
 
     @Test
-    public void testDrawTrainCards() throws Exception {
+    public void testDrawFaceUpTrainCards() throws Exception {
         TTRState myState = new TTRState();
         FaceUpDeck faceUpDeck = myState.getFiveUp();
-        for(TrainCards card : faceUpDeck.getCards()){
-            assertNotEquals(card, null);
+
+        /** Test there are five face up train cards**/
+        int len = faceUpDeck.getCards().size();
+        assertTrue(len == 5);
+     //   for(TrainCards card : faceUpDeck.getCards()){
+     //       assertNotEquals(card, null);
+     //   }
+        /** Test if Two Non Locomotive Cards can be drawn **/
+        int count = 0;
+        for(int i = 0; i < 4; i++){
+            if (faceUpDeck.getCards().get(i).getType() != "Rainbow")  {
+                count++;
+            }
         }
+        if(count > 1){
+            faceUpDeck.moveTopCardTo(faceUpDeck, myState.getPlayerDecks()[0]);
+            faceUpDeck.moveTopCardTo(faceUpDeck, myState.getPlayerDecks()[0]);
+        } else {
+            //TODO
+        }
+
+
     }
     @Test
     public void testPlaceTrack() throws Exception {
