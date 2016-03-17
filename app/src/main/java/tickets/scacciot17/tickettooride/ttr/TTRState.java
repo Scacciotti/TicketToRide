@@ -208,9 +208,12 @@ public class TTRState extends GameState {
      * @param action user generated event
      */
     public void placeTrack(TrackPlaceAction action, int spot){
-        highlightTracks();
-        if(testTracks[spot].getHighlight()){
-            testTracks[spot].setSelected(true);
+        if(!trainCardClick && !destinationClick) {
+            highlightTracks();
+            if (testTracks[spot].getHighlight()) {
+                testTracks[spot].setSelected(true);
+                trainPlaceClick = true;
+            }
         }
     }
 
