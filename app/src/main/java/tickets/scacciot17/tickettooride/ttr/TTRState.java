@@ -26,6 +26,9 @@ public class TTRState extends GameState {
     //private Tracks tracks; //all tracks in game
     protected int[] trainTokens; //train tokens availible to player
 
+    /**
+     *
+     */
     public TTRState(){
         numPlayers = 2;
         allDown = new FaceDownDeck();
@@ -58,7 +61,7 @@ public class TTRState extends GameState {
       //TODO
     /**
      * Copy constructor to create an identical version of the given game state
-     * @param copyState gamestate to copy
+     * @param copyState game state to copy
      */
     public TTRState(TTRState copyState){
         allDown = new FaceDownDeck(copyState.allDown);
@@ -74,8 +77,9 @@ public class TTRState extends GameState {
     }
 
     /**
-     * Deselects
-     * @param action
+     * Selects which area the user is attempting to interact with
+     * User cannot interact with track select and card select simultaneously
+     * @param action user event
      */
     public void changeMode(ChangeModeAction action){
         if(this.getCardSelect()) {
@@ -143,6 +147,12 @@ public class TTRState extends GameState {
             }
         }
     }
+
+    /**
+     * Highlights the destination deck if user wants
+     * to select from it
+     * @param action user generated event
+     */
     public void highlightDestCard( DrawDestCardAction action){
         if(this.getCardSelect() && !this.getTrainCardClick()){
             if(this.destinations.getHighlight()){
@@ -155,11 +165,25 @@ public class TTRState extends GameState {
             }
         }
     }
+
+    /**
+     * Places a track on game board
+     * @param action user generated event
+     */
     public void placeTrack( TrackPlaceAction action){
+        if(this.trackSelect)
+        {
+        }
 
     }
-    public void confirmSelection( ConfirmSelectionAction action){
 
+    /**
+     * If user has highlighted a legal action, confirms their selection
+     * and ends turn when appropriate
+     * @param action
+     */
+    public void confirmSelection( ConfirmSelectionAction action){
+        
     }
 
    public FaceDownDeck getAllDown() {
