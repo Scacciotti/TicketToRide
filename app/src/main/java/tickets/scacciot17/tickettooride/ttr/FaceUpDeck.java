@@ -35,6 +35,13 @@ public class FaceUpDeck extends TrainCarDeck {
         }
     }
 
+    public void renewDeck(FaceDownDeck source){
+        int cardsNeeded = 5 - this.size();
+        for(int i = 0; i < cardsNeeded; i++){
+            moveTopCardTo(this, source);
+        }
+    }
+
     public ArrayList<TrainCards> getCards(){
         return cards;
     }
