@@ -37,6 +37,6 @@ public class FaceUpDeck extends TrainCarDeck {
     }
 
     public ArrayList<TrainCards> getCards(){
-        return cards
+        return cards;
     }
 }
