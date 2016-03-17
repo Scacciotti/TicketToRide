@@ -33,7 +33,7 @@ public class FaceUpDeck extends Deck {
     //five cards from the FaceDownDeck and put them in the FaceUpDeck.
     public void firstFive(FaceDownDeck source){
         for(int i = 0; i < 5; i++){
-            moveTopCardTo(target, source);
+            moveTopCardTo(this, source);
         }
     }
 
