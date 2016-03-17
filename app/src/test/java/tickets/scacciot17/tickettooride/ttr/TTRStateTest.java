@@ -106,8 +106,7 @@ public class TTRStateTest {
         //assert claim testTrack[1] passes
         //assert player score increased by 2
     }
-
-    //mimic I made for practice
+    
     @Test
     public void testDrawDownCard() throws Exception
     {
@@ -132,6 +131,25 @@ public class TTRStateTest {
     public void testPlayerDeckTrains() throws Exception
     {
         TTRState testState = new TTRState();
-        //PlayerDecks testDeck = testState.;
+        PlayerDecks testDeck[] = testState.getPlayerDecks();
+        assertNotNull(testDeck);
     }
+    @Test
+    public void testTrackSelect() throws Exception
+    {
+        TTRState testState = new TTRState();
+        Track trackTest[] = testState.getTestTracks();
+        assertNotNull(trackTest);
+    }
+    @Test
+    public void testTTRStateConstructor() throws Exception
+    {
+        TTRState testState = new TTRState();
+        testState.setNumPlayers(3);
+        assertTrue("3 players declared",testState.getNumPlayers() == 3);
+        assertNotNull(testState.getFiveUp());
+        assertNotNull(testState.getTestTracks());
+        assertTrue(!testState.getCardSelect());//default TTRState is false
+    }
+
 }
