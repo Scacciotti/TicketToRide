@@ -182,7 +182,7 @@ public class TTRStateTest {
         Track trackTest[] = testState.getTestTracks();
         assertNotNull(trackTest);
         //trackTest[0].setSelected();
-        assertTrue(trackTest[0].getSelected());
+        assertFalse(trackTest[0].getSelected());
     }
     @Test
     public void testTTRStateConstructor() throws Exception

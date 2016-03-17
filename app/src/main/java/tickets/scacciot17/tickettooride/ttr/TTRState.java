@@ -28,6 +28,7 @@ public class TTRState extends GameState {
     private Boolean trainCardClick;
     private Boolean trainPlaceClick;
     private boolean destPool = true;
+    private boolean onlyDownDeck = false;
     private Track[] testTracks;
     protected int[] trainTokens; //train tokens available to player
     private int trackSpot = -1;
@@ -155,12 +156,15 @@ public class TTRState extends GameState {
                 }
             }
             FaceDownDeck tempDeck2 = this.getAllDown();
-            ArrayList<TrainCards> tempCards2 = tempDeck2.getCards();
-            for (int i = 0; i < tempDeck2.size(); i++) {
-                if (tempCards2.get(i).getHighlight()) {
-                    highlightCount++;
-                }
+            if(tempDeck2.getHighlight() && highlightCount == 0){
+                onlyDownDeck = true;
             }
+//            ArrayList<TrainCards> tempCards2 = tempDeck2.getCards();
+//            for (int i = 0; i < tempDeck2.size(); i++) {
+//                if (tempCards2.get(i).getHighlight()) {
+//                    highlightCount++;
+//                }
+//            }
             if (tempCards.get(spot).getHighlight()) {
                 tempCards.get(spot).setHighlight(false);
                 highlightCount--;
@@ -265,14 +269,31 @@ public class TTRState extends GameState {
                     fiveUp.renewDeck(allDown);
                 }
             }
-            for(int i = 0; i < allDown.size(); i++){
-                if(allDown.getCards().get(i).getHighlight()){
-                    TrainCards temp = allDown.getCards().get(i);
-                    temp.setHighlight(false);
-                    allDown.getCards().remove(i);
-                    playerDecks[playerID].getPlayerTrains().add(temp);
-                }
+            if(onlyDownDeck && allDown.getHighlight()){
+                TrainCards temp1 = allDown.getCards().get(allDown.size()-1);
+                TrainCards temp2 = allDown.getCards().get(allDown.size()-2);
+                playerDecks[playerID].getPlayerTrains().add(temp1);
+                playerDecks[playerID].getPlayerTrains().add(temp2);
+                allDown.getCards().remove(allDown.size()-1);
+                allDown.getCards().remove(allDown.size()-2);
+                onlyDownDeck = false;
+                allDown.setHighlight(false);
             }
+            else if(!onlyDownDeck && allDown.getHighlight()){
+                TrainCards temp1 = allDown.getCards().get(allDown.size()-1);
+                playerDecks[playerID].getPlayerTrains().add(temp1);
+                allDown.getCards().remove(allDown.size()-1);
+                onlyDownDeck = false;
+                allDown.setHighlight(false);
+            }
+//            for(int i = 0; i < allDown.size(); i++){
+//                if(allDown.getCards().get(i).getHighlight()){
+//                    TrainCards temp = allDown.getCards().get(i);
+//                    temp.setHighlight(false);
+//                    allDown.getCards().remove(i);
+//                    playerDecks[playerID].getPlayerTrains().add(temp);
+//                }
+//            }
             trainCardClick = false;
         }
         else if(destinationClick){
