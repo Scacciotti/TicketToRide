@@ -123,10 +123,18 @@ public class TTRStateTest {
     {
         TTRState testState = new TTRState();
         testState.setNumPlayers(3);
-        assertTrue("3 players declared",testState.getNumPlayers() == 3);
+        assertTrue("3 players declared", testState.getNumPlayers() == 3);
         assertNotNull(testState.getFiveUp());
         assertNotNull(testState.getTestTracks());
-        assertTrue(!testState.getCardSelect());//default TTRState is false
+        testState.setCardSelect(true);
+        assertTrue(testState.getCardSelect());//default TTRState is false
+    }
+    @Test
+    public void testHighlightTracks() throws Exception
+    {
+        TTRState testState = new TTRState();
+        testState.setTrackSelect(true);
+        assertTrue(testState.getTrackSelect());
     }
 
 }
