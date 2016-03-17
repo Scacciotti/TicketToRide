@@ -250,8 +250,22 @@ public class TTRState extends GameState {
                 testTracks[i].setHighlight(false);
             }
         }
-        else if(false){
-
+        else if(trainCardClick){
+            for(int i = 0; i < fiveUp.size(); i++){
+                if(fiveUp.getCards().get(i).getHighlight()){
+                    TrainCards temp = fiveUp.getCards().get(i);
+                    fiveUp.getCards().remove(i);
+                    playerDecks[playerID].getPlayerTrains().add(temp);
+                    fiveUp.renewDeck(allDown);
+                }
+            }
+            for(int i = 0; i < allDown.size(); i++){
+                if(allDown.getCards().get(i).getHighlight()){
+                    TrainCards temp = allDown.getCards().get(i);
+                    allDown.getCards().remove(i);
+                    playerDecks[playerID].getPlayerTrains().add(temp);
+                }
+            }
         }
         else if(true){
 
