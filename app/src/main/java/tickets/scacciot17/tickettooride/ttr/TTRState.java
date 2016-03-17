@@ -250,7 +250,7 @@ public class TTRState extends GameState {
                 testTracks[i].setHighlight(false);
             }
         }
-        else if(true){
+        else if(false){
 
         }
         else if(true){
