@@ -1,5 +1,6 @@
 package tickets.scacciot17.tickettooride.ttr;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 import tickets.scacciot17.tickettooride.ttr.card.TrainCards;
@@ -133,7 +134,6 @@ public class TTRState extends GameState {
             }
         }
     }
-
     /**
      * highlights selected face up cards, while also checking to see if face
      * down deck has had any highlighted cards
@@ -260,6 +260,8 @@ public class TTRState extends GameState {
    public FaceDownDeck getAllDown() {
         return allDown;
     }
+    public Track getATestTrack(int i)
+    {return testTracks[i];}
 
     public void setAllDown(FaceDownDeck allDown) {
         this.allDown = allDown;
