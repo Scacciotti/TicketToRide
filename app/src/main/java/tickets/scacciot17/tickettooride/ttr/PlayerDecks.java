@@ -8,15 +8,15 @@ import tickets.scacciot17.tickettooride.ttr.card.TrainCards;
 /**
  * Created by Parker on 3/16/2016.
  */
-public class PlayerDecks extends Deck {
+public class PlayerDecks {
 
-    private ArrayList<TrainCards> playerTrains;
-    private ArrayList<DestCards> playerDests;
+    private TrainCarDeck playerTrains;
+    private DestDeck playerDests;
 
     //Upon initial creation of the deck, create an ArrayList of cards
     public PlayerDecks(){
-        playerTrains = new ArrayList<TrainCards>();
-        playerDests = new ArrayList<DestCards>();
+        playerTrains = new TrainCarDeck();
+        playerDests = new DestDeck();
     }
 
     //If a deck has been created, copy it.
@@ -25,17 +25,11 @@ public class PlayerDecks extends Deck {
         // iterate over it
         synchronized(orig.playerTrains) {
             // create a new arrayList for our new deck; add each card in it
-            playerTrains = new ArrayList<TrainCards>();
-            for (TrainCards c: orig.playerTrains) {
-                cards.add(c);
-            }
+            playerTrains = new TrainCarDeck(orig.playerTrains);
         }
         synchronized(orig.playerDests) {
             // create a new arrayList for our new deck; add each card in it
-            playerDests = new ArrayList<DestCards>();
-            for (DestCards c: orig.playerDests) {
-                cards.add(c);
-            }
+            playerDests = new DestDeck(orig.playerDests);
         }
     }
     /**
@@ -44,17 +38,23 @@ public class PlayerDecks extends Deck {
      * @param source deck "location"
      * @param destination player "hand location"
      */
-    public void firstHand(FaceDownDeck source, PlayerDecks destination){
+    public void firstHandTrains(TrainCarDeck source, PlayerDecks destination){
         for(int i = 0; i < 4; i++){
-            moveTopCardTo(source, destination);
+            playerTrains.moveTopCardTo(source, destination.playerTrains);
         }
     }
 
-    public ArrayList<TrainCards> getPlayerTrains(){
+    public void firstHandDests(DestDeck source, PlayerDecks destination){
+        for(int i = 0; i < 3; i++){
+            playerDests.moveTopCardTo(source, destination.playerDests);
+        }
+    }
+
+    public TrainCarDeck getPlayerTrains(){
         return playerTrains;
     }
 
-    public ArrayList<DestCards> getPlayerDests(){
+    public DestDeck getPlayerDests(){
         return playerDests;
     }
 }

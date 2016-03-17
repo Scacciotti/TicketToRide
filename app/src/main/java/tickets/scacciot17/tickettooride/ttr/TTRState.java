@@ -13,7 +13,8 @@ public class TTRState extends GameState {
     private FaceDownDeck allDown;
     private FaceUpDeck fiveUp;
     private DestDeck destinations;
-    private Deck discard;
+    private TrainCarDeck discardTrain;
+    private DestDeck discardDest;
     private PlayerDecks[] playerDecks;
     private int playerID; //ID of the player whose turn it is
     private int numPlayers; //number of players for this game
@@ -39,7 +40,8 @@ public class TTRState extends GameState {
         destinations = new DestDeck();
         destinations.firstDeck();
         destinations.shuffle();
-        discard = new Deck();
+        discardTrain = new FaceDownDeck();
+        discardDest = new DestDeck();
         scores = new int[numPlayers];
         playerID = 0;
         //tracks = new Tracks();
@@ -51,7 +53,8 @@ public class TTRState extends GameState {
         };
         for(int i = 0; i < playerDecks.length; i++){
             playerDecks[i] = new PlayerDecks();
-            playerDecks[i].firstHand(allDown,playerDecks[i]);
+            playerDecks[i].firstHandTrains(allDown,playerDecks[i]);
+            playerDecks[i].firstHandDests(destinations,playerDecks[i]);
         }
         trackSelect = false;
         cardSelect = true;
@@ -78,11 +81,11 @@ public class TTRState extends GameState {
         allDown = new FaceDownDeck(copyState.allDown);
         fiveUp = new FaceUpDeck(copyState.fiveUp);
         destinations = new DestDeck(copyState.destinations);
-        if(!copyState.discard.cards.isEmpty()){
-            discard = new Deck(copyState.discard);
+        if(!copyState.discardTrain.getCards().isEmpty()){
+            discardTrain = new TrainCarDeck(copyState.discardTrain);
         }
         else{
-            discard = new Deck(copyState.discard);
+            discardTrain = new TrainCarDeck(copyState.discardTrain);
         }
         playerID = copyState.getPlayerID();
     }
@@ -196,7 +199,7 @@ public class TTRState extends GameState {
         if(this.trackSelect)
         {
             for(int i = 0; i < testTracks.length; i++) {
-                if (isLegalTrack(testTracks[i], playerDecks[playerID].getPlayerTrains())){
+                if (isLegalTrack(testTracks[i], playerDecks[playerID].getPlayerTrains().getCards())){
                     testTracks[i].setHighlight(true);
                 }
             }
@@ -223,7 +226,15 @@ public class TTRState extends GameState {
      * @param action
      */
     public void confirmSelection( ConfirmSelectionAction action){
-        
+        if(trainCardClick){
+
+        }
+        else if(true){
+
+        }
+        else if(true){
+
+        }
     }
 
    public FaceDownDeck getAllDown() {
@@ -250,12 +261,12 @@ public class TTRState extends GameState {
         this.destinations = destinations;
     }
 
-    public Deck getDiscard() {
-        return discard;
+    public TrainCarDeck getDiscard() {
+        return discardTrain;
     }
 
-    public void setDiscard(Deck discard) {
-        this.discard = discard;
+    public void setDiscard(FaceDownDeck discard) {
+        this.discardTrain = discard;
     }
 
     public int getPlayerID() {

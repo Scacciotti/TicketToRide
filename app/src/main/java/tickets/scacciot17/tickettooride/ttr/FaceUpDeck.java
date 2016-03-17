@@ -8,13 +8,12 @@ import tickets.scacciot17.tickettooride.ttr.card.TrainCards;
  * represents the collection of face up train cards
  * Created by Parker on 3/15/2016.
  */
-public class FaceUpDeck extends Deck {
+public class FaceUpDeck extends TrainCarDeck {
 
-    private ArrayList<TrainCards> cards;
 
     //Upon initial creation of the deck, create an ArrayList of cards
     public FaceUpDeck(){
-        cards = new ArrayList<TrainCards>();
+        super();
     }
 
     //If a deck has been created, copy it.

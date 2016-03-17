@@ -2,20 +2,20 @@ package tickets.scacciot17.tickettooride.ttr;
 
 import java.util.ArrayList;
 
+import tickets.scacciot17.tickettooride.ttr.card.Cards;
 import tickets.scacciot17.tickettooride.ttr.card.TrainCards;
 
 /**
  * Creates the pile of face down train cards
  * Created by Parker on 3/15/2016.
  */
-public class FaceDownDeck extends Deck {
+public class FaceDownDeck extends TrainCarDeck {
 
-    private ArrayList<TrainCards> cards;
     private boolean highlight;
 
     //Upon initial creation of the deck, create an ArrayList of cards
     public FaceDownDeck(){
-        cards = new ArrayList<TrainCards>();
+        super();
         highlight = false;
     }
 

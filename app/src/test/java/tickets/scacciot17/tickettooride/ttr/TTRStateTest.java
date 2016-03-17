@@ -18,8 +18,10 @@ public class TTRStateTest {
     public void testDrawTrainCards() throws Exception {
         TTRState myState = new TTRState();
         FaceUpDeck faceUpDeck = myState.getFiveUp();
-        for(TrainCards card : faceUpDeck.getCards()){
-            assertNotEquals(card, null);
+        ArrayList<TrainCards> tempCards = faceUpDeck.getCards();
+        int size = faceUpDeck.size();
+        for(int i = 0; i < size; i++){
+            assertNotEquals(faceUpDeck.getCards().get(i), null);
         }
     }
     @Test
