@@ -7,6 +7,7 @@ import tickets.scacciot17.tickettooride.ttr.card.TrainCards;
 
 /**
  * represents the collection of face up train cards
+ *
  * Created by Parker on 3/15/2016.
  */
 public class FaceUpDeck extends TrainCarDeck {
@@ -42,12 +43,21 @@ public class FaceUpDeck extends TrainCarDeck {
         return this;
     }
 
+    /**
+     * moves the top 5 cards from faceDownDeck to FaceUpDeck
+     *
+     * @param source - the main FaceDownDeck
+     */
     public void firstFive(FaceDownDeck source){
         for(int i = 0; i < 5; i++){
             moveTopCardTo(this, source);
         }
     }
 
+    /**
+     *
+     * @return - Returns the TrainCards Arraylist
+     */
     public ArrayList<TrainCards> getCards(){
         return cards;
     }

@@ -8,6 +8,7 @@ import tickets.scacciot17.tickettooride.ttr.card.TrainCards;
 
 /**
  * Creates the destination deck
+ *
  * @author Parker
  * @version 3/15/2016.
  */
@@ -60,13 +61,31 @@ public class DestDeck{
         }
     }
 
+    /**
+     *
+     *
+     * @return
+     *      Returns the ArrayList of DestCards
+     */
     public ArrayList<DestCards> getCards(){
         return cards;
     }
 
+    /**
+     * Sets whether it is highlighted or not
+     *
+     * @param value - new highlighted setting
+     */
     public void setHighlight(boolean value){
         this.highlight = value;
     }
+
+    /**
+     * Tells whether the Destination ticket is highlighted or not
+     *
+     * @return
+     *      Returns true or false
+     */
     public boolean getHighlight(){
         return highlight;
     }
@@ -74,11 +93,8 @@ public class DestDeck{
 
 
     /**
-     * adds one of each card, increasing the size of the deck by 52. Cards are added
-     * spades first (King to Ace), then similarly with hearts, diamonds and clubs.
+     * Shuffles the deck randomly
      *
-     * @return
-     * 		the deck
      */
     public void shuffle() {
         // synchronize so that we don't have someone trying to modify the
@@ -127,15 +143,15 @@ public class DestDeck{
      * 		the deck that will get the cards
     */
     public void moveAllCardsTo(DestDeck target, DestDeck source) {
-    // if the source and target are the same, ignore
-    if (source == target) {
-    return;
-    }
+        // if the source and target are the same, ignore
+        if (source == target) {
+            return;
+        }
 
-    // keep moving cards until the current deck is empty
-    while (size() > 0) {
-    moveTopCardTo(target,source);
-    }
+        // keep moving cards until the current deck is empty
+        while (size() > 0) {
+        moveTopCardTo(target,source);
+        }
     }
 
 

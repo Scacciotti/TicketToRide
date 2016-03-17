@@ -4,6 +4,8 @@ import tickets.scacciot17.tickettooride.Game.GamePlayer;
 import tickets.scacciot17.tickettooride.Game.actionMsg.GameAction;
 
 /**
+ * Confirms the GameAction of the player who made the selection
+ *
  * Created by Parker on 3/16/2016.
  */
 public class ConfirmSelectionAction extends GameAction {
