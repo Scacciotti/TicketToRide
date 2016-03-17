@@ -48,9 +48,10 @@ public class TTRState extends GameState {
         for(int i =0; i < trainTokens.length; i++){
             trainTokens[i] = 45;
             scores[i] = 0;
-        }
+        };
         for(int i = 0; i < playerDecks.length; i++){
-            playerDecks[i].firstHand(allDown);
+            playerDecks[i] = new PlayerDecks();
+            playerDecks[i].firstHand(allDown,playerDecks[i]);
         }
         trackSelect = false;
         cardSelect = true;
@@ -116,7 +117,7 @@ public class TTRState extends GameState {
      * @param action user action
      * @param spot location of click/ item selection
      */
-    public void highlightUpCard(DrawUpCard1Action action, int spot){
+    public void highlightUpCard(DrawUpCardAction action, int spot){
         if(this.getCardSelect() && !this.getDestinationClick()) {
             int highlightCount = 0;
             FaceUpDeck tempDeck = this.getFiveUp();
