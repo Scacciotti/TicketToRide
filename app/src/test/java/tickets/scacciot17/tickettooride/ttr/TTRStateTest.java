@@ -19,6 +19,8 @@ public class TTRStateTest {
     public void testDrawFaceUpTrainCards() throws Exception {
         TTRState myState = new TTRState();
         FaceUpDeck faceUpDeck = myState.getFiveUp();
+        GamePlayer player = new TTRHumanPlayer("TestMonkey");
+        DrawUpCardAction action = new DrawUpCardAction(player);
         int size = faceUpDeck.size();
         int selectedCardCount = 0;
         for(int i = 0; i < size; i++){
@@ -26,24 +28,24 @@ public class TTRStateTest {
         }
         assertTrue(size == 5);
 
-
         /** Case 1: 2 Reg **/
         //select two non rainbow cards
-        GamePlayer player = new TTRHumanPlayer("TestMonkey");
-        DrawUpCardAction action = new DrawUpCardAction(player);
         for (int i = 0; i < 5; i++){
             if(myState.getFiveUp().getCards().get(i).getType() != "Rainbow" && selectedCardCount < 3){
                 myState.highlightUpCard(action, i);
                 selectedCardCount++;
             } else {
-                //Replace cards so that theres two non
-                //TODO
+                //Replace cards so that theres two non rainbow
                 return;
             }
 
         }
         //assert that on confirm they are added to player hand
-        //TODO
+        int oldDeckSize = myState.getPlayerDecks()[0].getPlayerTrains().size();
+        myState.setTrainCardClick(true);
+        ConfirmSelectionAction confirmSelectAction = new ConfirmSelectionAction(player);
+        myState.confirmSelection(confirmSelectAction);
+        assertTrue((oldDeckSize + 2) == myState.getPlayerDecks()[0].getPlayerTrains().size());
         //assert that new cards updates in 'five up'
         size = faceUpDeck.size();
         for(int i = 0; i < size; i++){
@@ -54,21 +56,33 @@ public class TTRStateTest {
         /** Case 2: 1 Rainbow 1 Reg (should fail) **/
         selectedCardCount = 0;
         //select one rainbow card, one train card
+        myState.getFiveUp().getCards().get(0).setType("Rainbow");
+        myState.getFiveUp().getCards().get(1).setType("Blue");
+        myState.highlightUpCard(action, 0);
+        myState.highlightUpCard(action, 1);
         //assert that confirm fails
-        //assert five up remain the same
-        //assert that
+        myState.confirmSelection(confirmSelectAction);
+        assertTrue((oldDeckSize) == myState.getPlayerDecks()[0].getPlayerTrains().size());
 
         /** Case 3: 1 Rainbow **/
         //select one rainbow card
+        myState.getFiveUp().getCards().get(0).setType("Rainbow");
+        myState.highlightUpCard(action, 0);
         //assert on confirm rainbow is added to hand
+        myState.confirmSelection(confirmSelectAction);
+        assertTrue((oldDeckSize + 1) == myState.getPlayerDecks()[0].getPlayerTrains().size());
         //assert five up has new card
-
+        size = faceUpDeck.size();
+        for(int i = 0; i < size; i++){
+            assertNotEquals(faceUpDeck.getCards().get(i), null);
+        }
+        assertTrue(size == 5);
     }
 
     @Test
     public void testDrawFaceDownTrainCard() throws Exception {
         TTRState testState = new TTRState();
-        //check face down deck exists and is non empty
+        //check face down deck nd is non empty
 
         /** Case 1: FaceDownDeck Full **/
         //select face down stack
@@ -91,22 +105,28 @@ public class TTRStateTest {
     @Test
     public void testPlaceTrack() throws Exception {
         TTRState testState = new TTRState();
+        /** Case 1: Placing Track wihtout train cards (should fail) **/
         //give player random hand containing 0 blue trains
         //assert claim testTrack[0] fails
         //assert score stayed the same
+
+        /** Case 2: Place Track with Proper train cards**/
         //give player 2 blue trains
         //assert claim testTrack[0] passes
         //assert player score increased by 2
+        /** Case 2.3: Check Route Can't be double Calimed**/
         //give player 2 blue cards
         //assert claim testTrack[0] fails (as it is already claimed)
         //give player random hand containing only 1 yellow train
+
+        /** **/
         //assert claim testTrack[1] fails
         //assert player score stayed the same
         //give player 1 rainbow train
         //assert claim testTrack[1] passes
         //assert player score increased by 2
     }
-    
+
     @Test
     public void testDrawDownCard() throws Exception
     {
@@ -140,6 +160,8 @@ public class TTRStateTest {
         TTRState testState = new TTRState();
         Track trackTest[] = testState.getTestTracks();
         assertNotNull(trackTest);
+        //trackTest[0].setSelected();
+        assertTrue(trackTest[0].getSelected());
     }
     @Test
     public void testTTRStateConstructor() throws Exception
@@ -161,3 +183,4 @@ public class TTRStateTest {
     }
 
 }
+
