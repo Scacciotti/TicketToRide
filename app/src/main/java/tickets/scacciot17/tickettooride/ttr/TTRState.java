@@ -230,4 +230,11 @@ public class TTRState extends GameState {
         this.trainPlaceClick = destinationClick;
     }
 
+    public int[] getTrainTokens() {
+        return trainTokens;
+    }
+
+    public void setTrainTokens(int[] trainTokens) {
+        this.trainTokens = trainTokens;
+    }
 }

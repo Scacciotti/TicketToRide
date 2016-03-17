@@ -27,4 +27,12 @@ public class TrainCards extends Cards {
     public boolean getHighlight(){
         return highlight;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 }
